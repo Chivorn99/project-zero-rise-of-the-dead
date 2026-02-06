@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="Rise Of The Dead"
+run/main_scene="res://scene/level/world.tscn"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
