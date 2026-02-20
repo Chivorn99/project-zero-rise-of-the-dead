@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://bwja2cdealkcw"]
+[gd_scene load_steps=5 format=4 uid="uid://bwja2cdealkcw"]
 
 [ext_resource type="TileSet" uid="uid://d1pns4jj81iqa" path="res://assets/tilesets/waste_land_tile.tres" id="1_0hn3o"]
 [ext_resource type="PackedScene" uid="uid://bdm8702e2w72g" path="res://scene/player.tscn" id="2_er4cb"]
 [ext_resource type="Script" uid="uid://baxoen72ye6x3" path="res://scene/player.gd" id="3_cud0k"]
+[ext_resource type="PackedScene" uid="uid://plsodaf7as2a" path="res://scene/zombie.tscn" id="4_er4cb"]
 
 [node name="World" type="Node2D"]
 
@@ -15,3 +16,12 @@ script = ExtResource("3_cud0k")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
+
+[node name="Zombie" parent="." instance=ExtResource("4_er4cb")]
+position = Vector2(-154, -126)
+
+[node name="Zombie2" parent="." instance=ExtResource("4_er4cb")]
+position = Vector2(-19, -131)
+
+[node name="Zombie3" parent="." instance=ExtResource("4_er4cb")]
+position = Vector2(-174, -10)
