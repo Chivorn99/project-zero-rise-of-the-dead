@@ -129,6 +129,18 @@ func take_damage(amount):
 	if current_hp <= 0:
 		die()
 
+func heal(amount):
+	if is_dead:
+		return 
+
+	current_hp += amount
+	
+	if current_hp > max_hp:
+		current_hp = max_hp
+		
+	health_bar.value = current_hp
+	print("Picked up Heart! HP is now: ", current_hp)
+
 func die():
 	is_dead = true
 	is_attacking = false
