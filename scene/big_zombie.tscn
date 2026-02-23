@@ -633,7 +633,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"first_death_side",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -879,9 +879,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1vpy7")
 }],
-"loop": true,
+"loop": false,
 "name": &"second_death_side",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -979,7 +979,7 @@ script = ExtResource("1_fjgnw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_oof0h")
-animation = &"idle_down"
+animation = &"second_attack_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xwlh3")

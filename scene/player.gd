@@ -43,14 +43,13 @@ func _physics_process(delta):
 	if is_dead:
 		return
 
-	# Tick down attack cooldown
 	if attack_cooldown > 0:
 		attack_cooldown -= delta
 
 	if is_attacking:
 		if not Input.is_action_pressed("attack"):
 			is_attacking = false
-			hitbox_shape.disabled = true # Make sure hitbox turns off
+			hitbox_shape.disabled = true
 			if last_direction.y < 0:
 				anim.play("idle_up")
 			elif last_direction.y > 0:
@@ -119,7 +118,7 @@ func take_damage(amount):
 func die():
 	is_dead = true
 	is_attacking = false
-	hitbox_shape.disabled = true # Turn off hitbox on death
+	hitbox_shape.disabled = true
 	velocity = Vector2.ZERO
 	
 	if last_direction.y < 0:
@@ -144,7 +143,7 @@ func respawn():
 	is_dead = false
 	is_attacking = false
 	attack_cooldown = 0.0
-	hitbox_shape.disabled = true # Make sure hitbox is off on respawn
+	hitbox_shape.disabled = true
 	last_direction = Vector2.DOWN
 	anim.flip_h = false
 	anim.play("idle_down")
@@ -159,25 +158,25 @@ func attack():
 	
 	if last_direction.y < 0:
 		anim.play("attack_up")
-		hitbox.position = Vector2(0, -15) # Move hitbox Up
+		hitbox.position = Vector2(0, -15) 
 	elif last_direction.y > 0:
 		anim.play("attack_down")
-		hitbox.position = Vector2(0, 15) # Move hitbox Down
+		hitbox.position = Vector2(0, 15) 
 	else:
 		anim.play("attack_side")
 		if anim.flip_h:
-			hitbox.position = Vector2(-15, 0) # Move hitbox Left
+			hitbox.position = Vector2(-15, 0) 
 		else:
-			hitbox.position = Vector2(15, 0) # Move hitbox Right
+			hitbox.position = Vector2(15, 0) 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation.begins_with("attack"):
 		is_attacking = false
-		attack_cooldown = ATTACK_COOLDOWN_TIME # Start cooldown after swing
-		hitbox_shape.disabled = true # Turn the hitbox OFF
+		attack_cooldown = ATTACK_COOLDOWN_TIME 
+		hitbox_shape.disabled = true
 
 
 func _on_hitbox_body_entered(body):
-	# Make sure the thing we hit has health, and isn't the player!
+	
 	if body.has_method("take_damage") and body != self:
-		body.take_damage(25) # A punch does 25 damage!
+		body.take_damage(25) 

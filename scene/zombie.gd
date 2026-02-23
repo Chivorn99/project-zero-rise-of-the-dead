@@ -8,10 +8,10 @@ const ATTACK_RANGE = 17.5
 var player = null
 var is_attacking = false 
 var is_dying = false
-var health = 50 # 2 punches will kill them!
+var health = 50 
 var attack_cooldown = 0.0
-const ATTACK_COOLDOWN_TIME = 0.6 # Seconds between attacks
-const DAMAGE_RANGE = 25.0 # Must still be this close when hit lands
+const ATTACK_COOLDOWN_TIME = 0.6 
+const DAMAGE_RANGE = 25.0
 
 func _ready():
 	player = get_tree().current_scene.get_node_or_null("Player")
@@ -22,7 +22,6 @@ func _physics_process(delta):
 	if is_dying:
 		return
 
-	# Tick down attack cooldown
 	if attack_cooldown > 0:
 		attack_cooldown -= delta
 
@@ -70,10 +69,8 @@ func attack(direction):
 		else:
 			anim.play("first_attack_down")
 
-	# Delay damage to mid-animation so player can react / dodge
 	await get_tree().create_timer(0.3).timeout
 
-	# Verify zombie is still alive and player is still in range
 	if is_dying or player == null or player.is_dead:
 		return
 	var dist = global_position.distance_to(player.global_position)
@@ -83,7 +80,7 @@ func attack(direction):
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation.begins_with("first_attack"):
 		is_attacking = false
-		attack_cooldown = ATTACK_COOLDOWN_TIME # Pause before next attack
+		attack_cooldown = ATTACK_COOLDOWN_TIME 
 	elif anim.animation == "death_side":
 		queue_free()
 
