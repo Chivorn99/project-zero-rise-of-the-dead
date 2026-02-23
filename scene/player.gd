@@ -10,16 +10,28 @@ var max_hunger = 100
 var current_hunger = 100
 var is_dead = false
 var spawn_position = Vector2.ZERO
+var is_attacking = false
+var attack_cooldown = 0.0
+const ATTACK_COOLDOWN_TIME = 0.4 # Seconds between attacks
 
 @onready var anim = $AnimatedSprite2D 
 @onready var health_bar = $UI/HealthBar
 @onready var hunger_bar = $UI/HungerBar
+@onready var hitbox = $Hitbox
+@onready var hitbox_shape = $Hitbox/CollisionShape2D
 
 var last_direction = Vector2.DOWN
 
-# 1. INITIALIZE THE BARS WHEN THE GAME STARTS
 func _ready():
 	spawn_position = global_position
+
+	if anim.sprite_frames:
+		if anim.sprite_frames.has_animation("attack_up"):
+			anim.sprite_frames.set_animation_loop("attack_up", false)
+		if anim.sprite_frames.has_animation("attack_down"):
+			anim.sprite_frames.set_animation_loop("attack_down", false)
+		if anim.sprite_frames.has_animation("attack_side"):
+			anim.sprite_frames.set_animation_loop("attack_side", false)
 
 	health_bar.max_value = max_hp
 	health_bar.value = current_hp
@@ -31,7 +43,27 @@ func _physics_process(delta):
 	if is_dead:
 		return
 
+	# Tick down attack cooldown
+	if attack_cooldown > 0:
+		attack_cooldown -= delta
+
+	if is_attacking:
+		if not Input.is_action_pressed("attack"):
+			is_attacking = false
+			hitbox_shape.disabled = true # Make sure hitbox turns off
+			if last_direction.y < 0:
+				anim.play("idle_up")
+			elif last_direction.y > 0:
+				anim.play("idle_down")
+			else:
+				anim.play("idle_side")
+		return
+
 	var direction = Vector2.ZERO
+
+	if Input.is_action_pressed("attack") and attack_cooldown <= 0:
+		attack()
+		return
 	
 	# INPUT
 	if Input.is_action_pressed("ui_right") or Input.is_key_pressed(KEY_D):
@@ -72,7 +104,6 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-# 2. THE FUNCTION THE ZOMBIE WILL TRIGGER
 func take_damage(amount):
 	if is_dead:
 		return
@@ -87,17 +118,17 @@ func take_damage(amount):
 
 func die():
 	is_dead = true
-	velocity = Vector2.ZERO # Stop sliding
+	is_attacking = false
+	hitbox_shape.disabled = true # Turn off hitbox on death
+	velocity = Vector2.ZERO
 	
-	# Play the correct death animation based on where we were looking
 	if last_direction.y < 0:
 		anim.play("death_one_side") 
 	elif last_direction.y > 0:
 		anim.play("death_one_side")
 	else:
 		anim.play("death_one_side")
-		
-	# MAGIC PAUSE: Wait for 3 seconds before respawning
+	
 	await get_tree().create_timer(3).timeout
 	respawn()
 
@@ -111,6 +142,42 @@ func respawn():
 	hunger_bar.value = current_hunger
 
 	is_dead = false
+	is_attacking = false
+	attack_cooldown = 0.0
+	hitbox_shape.disabled = true # Make sure hitbox is off on respawn
 	last_direction = Vector2.DOWN
 	anim.flip_h = false
 	anim.play("idle_down")
+
+
+func attack():
+	is_attacking = true
+	velocity = Vector2.ZERO 
+
+	# Turn the hitbox ON
+	hitbox_shape.disabled = false
+	
+	if last_direction.y < 0:
+		anim.play("attack_up")
+		hitbox.position = Vector2(0, -15) # Move hitbox Up
+	elif last_direction.y > 0:
+		anim.play("attack_down")
+		hitbox.position = Vector2(0, 15) # Move hitbox Down
+	else:
+		anim.play("attack_side")
+		if anim.flip_h:
+			hitbox.position = Vector2(-15, 0) # Move hitbox Left
+		else:
+			hitbox.position = Vector2(15, 0) # Move hitbox Right
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if anim.animation.begins_with("attack"):
+		is_attacking = false
+		attack_cooldown = ATTACK_COOLDOWN_TIME # Start cooldown after swing
+		hitbox_shape.disabled = true # Turn the hitbox OFF
+
+
+func _on_hitbox_body_entered(body):
+	# Make sure the thing we hit has health, and isn't the player!
+	if body.has_method("take_damage") and body != self:
+		body.take_damage(25) # A punch does 25 damage!

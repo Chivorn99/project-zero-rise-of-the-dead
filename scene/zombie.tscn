@@ -384,7 +384,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6kkhx")
 }],
-"loop": true,
+"loop": false,
 "name": &"death_side",
 "speed": 5.0
 }, {
@@ -700,7 +700,7 @@ script = ExtResource("1_0i1wb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b3mqo")
-animation = &"second_attack_up"
+animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xdej8")

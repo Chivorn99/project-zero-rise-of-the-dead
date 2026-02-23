@@ -1,12 +1,15 @@
-[gd_scene load_steps=80 format=3 uid="uid://bdm8702e2w72g"]
+[gd_scene load_steps=96 format=3 uid="uid://bdm8702e2w72g"]
 
 [ext_resource type="Texture2D" uid="uid://78sreo03qev5" path="res://assets/sprites/Character/Main/Idle/Character_down_idle-Sheet6.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://baxoen72ye6x3" path="res://scene/player.gd" id="1_dk1vr"]
 [ext_resource type="Texture2D" uid="uid://cp3dlvv25bs5c" path="res://assets/sprites/Character/Main/Idle/Character_side-left_idle-Sheet6.png" id="2_ct4mp"]
 [ext_resource type="Texture2D" uid="uid://b775s2vvfpc4i" path="res://assets/sprites/Character/Main/Death/Character_side-left_death1-Sheet6.png" id="2_j4wxg"]
+[ext_resource type="Texture2D" uid="uid://de38tm6xi2sd" path="res://assets/sprites/Character/Main/Punch/Character_down_punch-Sheet4.png" id="2_v4iqv"]
+[ext_resource type="Texture2D" uid="uid://pr0dyxeecxhe" path="res://assets/sprites/Character/Main/Punch/Character_side_punch-Sheet4.png" id="3_42h83"]
 [ext_resource type="Texture2D" uid="uid://bj4xgh7fw3ot6" path="res://assets/sprites/Character/Main/Death/Character_side-left_death3-Sheet7.png" id="3_bup7g"]
 [ext_resource type="Texture2D" uid="uid://bhlljfoyx3bn6" path="res://assets/sprites/Character/Main/Idle/Character_side_idle-Sheet6.png" id="3_s4jxa"]
 [ext_resource type="Texture2D" uid="uid://cu4yxxm283tbr" path="res://assets/sprites/Character/Main/Death/Character_side-left_death2-Sheet7.png" id="4_4ja17"]
+[ext_resource type="Texture2D" uid="uid://dpmimjum81pee" path="res://assets/sprites/Character/Main/Punch/Character_up_punch-Sheet4.png" id="4_iuf2t"]
 [ext_resource type="Texture2D" uid="uid://c5u77k6odvmla" path="res://assets/sprites/Character/Main/Idle/Character_up_idle-Sheet6.png" id="4_oh5ij"]
 [ext_resource type="Texture2D" uid="uid://bv62gdec8t4gc" path="res://assets/sprites/Character/Main/Run/Character_down_run-Sheet6.png" id="5_hp4bs"]
 [ext_resource type="Texture2D" uid="uid://u7po2rwbr1gf" path="res://assets/sprites/Character/Main/Run/Character_side_run-Sheet6.png" id="6_g2vtq"]
@@ -15,6 +18,54 @@
 [ext_resource type="Texture2D" uid="uid://dhxcyrbbgg3qg" path="res://assets/hp/HP.png" id="10_u7b46"]
 [ext_resource type="Texture2D" uid="uid://bcjxw1uuri0e5" path="res://assets/hunger/Hunger-Bar.png" id="11_j4wxg"]
 [ext_resource type="Texture2D" uid="uid://bpfs4774ddsb5" path="res://assets/hunger/Hunger.png" id="12_bup7g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0a317"]
+atlas = ExtResource("2_v4iqv")
+region = Rect2(0, 0, 12, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofccr"]
+atlas = ExtResource("2_v4iqv")
+region = Rect2(12, 0, 12, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytl04"]
+atlas = ExtResource("2_v4iqv")
+region = Rect2(24, 0, 12, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ec2ns"]
+atlas = ExtResource("2_v4iqv")
+region = Rect2(36, 0, 12, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mmt4"]
+atlas = ExtResource("3_42h83")
+region = Rect2(0, 0, 20, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pv5j"]
+atlas = ExtResource("3_42h83")
+region = Rect2(20, 0, 20, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2mpt"]
+atlas = ExtResource("3_42h83")
+region = Rect2(40, 0, 20, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rvhh"]
+atlas = ExtResource("3_42h83")
+region = Rect2(60, 0, 20, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llvc7"]
+atlas = ExtResource("4_iuf2t")
+region = Rect2(0, 0, 12, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywa8g"]
+atlas = ExtResource("4_iuf2t")
+region = Rect2(12, 0, 12, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgg88"]
+atlas = ExtResource("4_iuf2t")
+region = Rect2(24, 0, 12, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5omm"]
+atlas = ExtResource("4_iuf2t")
+region = Rect2(36, 0, 12, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_slqdk"]
 atlas = ExtResource("2_j4wxg")
@@ -268,6 +319,57 @@ region = Rect2(65, 0, 13, 17)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0a317")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofccr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytl04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ec2ns")
+}],
+"loop": true,
+"name": &"attack_down",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mmt4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pv5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2mpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rvhh")
+}],
+"loop": true,
+"name": &"attack_side",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llvc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywa8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgg88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5omm")
+}],
+"loop": true,
+"name": &"attack_up",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_slqdk")
 }, {
 "duration": 1.0,
@@ -506,13 +608,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(14, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4iqv"]
+size = Vector2(4, 4)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_dk1vr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3vgh4")
-animation = &"death_two_side"
+animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_onrkg")
@@ -543,3 +648,13 @@ texture_progress_offset = Vector2(10.935, 5.95)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(6, 5.3)
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_v4iqv")
+disabled = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
