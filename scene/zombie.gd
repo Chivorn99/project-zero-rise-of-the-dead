@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 40.0
-const ATTACK_RANGE = 25.0
+const SPEED = 20.0
+const ATTACK_RANGE = 17.5 
 
 @onready var anim = $AnimatedSprite2D
 
@@ -12,7 +12,13 @@ func _ready():
 	player = get_tree().current_scene.get_node_or_null("Player")
 
 func _physics_process(delta):
-	if player == null or is_attacking:
+	if player == null or player.is_dead:
+		is_attacking = false
+		velocity = Vector2.ZERO
+		anim.play("idle_down") 
+		return 
+		
+	if is_attacking:
 		return 
 
 	var distance = global_position.distance_to(player.global_position)
@@ -40,7 +46,10 @@ func _physics_process(delta):
 func attack(direction):
 	is_attacking = true
 	velocity = Vector2.ZERO 
-	
+
+	if player.has_method("take_damage"):
+		player.take_damage(10)
+
 	# Play the right attack animation
 	if abs(direction.x) > abs(direction.y):
 		anim.play("first_attack_side")
@@ -52,5 +61,5 @@ func attack(direction):
 			anim.play("first_attack_down")
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	is_attacking = false
-	anim.play("idle_down") 
+	if anim.animation.begins_with("first_attack"):
+		is_attacking = false
