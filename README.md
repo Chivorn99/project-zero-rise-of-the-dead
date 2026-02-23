@@ -12,12 +12,12 @@ A top-down 2D pixel art game built in Godot 4.5.
 * **Camera:** `Camera2D` with zoom enabled for pixel-art focus.
 
 ## 📺 Gameplay Demo
-**[CLICK HERE TO WATCH THE GAMEPLAY VIDEO](https://youtu.be/IHB8OdM91bM)**
+**[CLICK HERE TO WATCH THE GAMEPLAY VIDEO]([https://youtu.be/IHB8OdM91bM](https://youtu.be/0anqL4f9uRs))**
 
 ## 📸 Screenshots
 *(Drag and drop your gameplay screenshots here on GitHub, or link them)*
 ![Gameplay Screenshot]
-<img width="1164" height="729" alt="Screenshot 2026-02-06 231920" src="https://github.com/user-attachments/assets/5d8c14c5-8034-4635-96e9-c3e84b60795a" />
+<img width="1159" height="657" alt="image" src="https://github.com/user-attachments/assets/a87b861c-57d0-4280-8fab-6334f1522833" />
 
 ## 🤖 AI Usage Declaration
 In compliance with assignment requirements, the following AI tools were used to assist in development:
