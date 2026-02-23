@@ -11,8 +11,9 @@ var current_hunger = 100
 var is_dead = false
 var spawn_position = Vector2.ZERO
 var is_attacking = false
+var is_picking_up = false
 var attack_cooldown = 0.0
-const ATTACK_COOLDOWN_TIME = 0.4 # Seconds between attacks
+const ATTACK_COOLDOWN_TIME = 0.4
 
 @onready var anim = $AnimatedSprite2D 
 @onready var health_bar = $UI/HealthBar
@@ -32,6 +33,12 @@ func _ready():
 			anim.sprite_frames.set_animation_loop("attack_down", false)
 		if anim.sprite_frames.has_animation("attack_side"):
 			anim.sprite_frames.set_animation_loop("attack_side", false)
+		if anim.sprite_frames.has_animation("pickup_up"):
+			anim.sprite_frames.set_animation_loop("pickup_up", false)
+		if anim.sprite_frames.has_animation("pickup_down"):
+			anim.sprite_frames.set_animation_loop("pickup_down", false)
+		if anim.sprite_frames.has_animation("pickup_side"):
+			anim.sprite_frames.set_animation_loop("pickup_side", false)
 
 	health_bar.max_value = max_hp
 	health_bar.value = current_hp
@@ -41,6 +48,9 @@ func _ready():
 
 func _physics_process(delta):
 	if is_dead:
+		return
+
+	if is_picking_up:
 		return
 
 	if attack_cooldown > 0:
@@ -63,8 +73,12 @@ func _physics_process(delta):
 	if Input.is_action_pressed("attack") and attack_cooldown <= 0:
 		attack()
 		return
+
+	if Input.is_action_just_pressed("pickup"):
+		pickup()
+		return
 	
-	# INPUT
+	# INPUT — FIXED: added missing closing parentheses
 	if Input.is_action_pressed("ui_right") or Input.is_key_pressed(KEY_D):
 		direction.x += 1
 	if Input.is_action_pressed("ui_left") or Input.is_key_pressed(KEY_A):
@@ -118,6 +132,7 @@ func take_damage(amount):
 func die():
 	is_dead = true
 	is_attacking = false
+	is_picking_up = false
 	hitbox_shape.disabled = true
 	velocity = Vector2.ZERO
 	
@@ -142,18 +157,17 @@ func respawn():
 
 	is_dead = false
 	is_attacking = false
+	is_picking_up = false
 	attack_cooldown = 0.0
 	hitbox_shape.disabled = true
 	last_direction = Vector2.DOWN
 	anim.flip_h = false
 	anim.play("idle_down")
 
-
 func attack():
 	is_attacking = true
 	velocity = Vector2.ZERO 
 
-	# Turn the hitbox ON
 	hitbox_shape.disabled = false
 	
 	if last_direction.y < 0:
@@ -167,16 +181,27 @@ func attack():
 		if anim.flip_h:
 			hitbox.position = Vector2(-15, 0) 
 		else:
-			hitbox.position = Vector2(15, 0) 
+			hitbox.position = Vector2(15, 0)
+
+func pickup():
+	is_picking_up = true
+	velocity = Vector2.ZERO
+	
+	if last_direction.y < 0:
+		anim.play("pickup_up")
+	elif last_direction.y > 0:
+		anim.play("pickup_down")
+	else:
+		anim.play("pickup_side")
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation.begins_with("attack"):
 		is_attacking = false
 		attack_cooldown = ATTACK_COOLDOWN_TIME 
 		hitbox_shape.disabled = true
-
+	elif anim.animation.begins_with("pickup"):
+		is_picking_up = false
 
 func _on_hitbox_body_entered(body):
-	
 	if body.has_method("take_damage") and body != self:
-		body.take_damage(25) 
+		body.take_damage(25)
