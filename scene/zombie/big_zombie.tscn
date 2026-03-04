@@ -1,6 +1,6 @@
 [gd_scene load_steps=144 format=3 uid="uid://cjdx6la1efymk"]
 
-[ext_resource type="Script" uid="uid://bwlso38d2wenm" path="res://scene/big_zombie.gd" id="1_fjgnw"]
+[ext_resource type="Script" uid="uid://bwlso38d2wenm" path="res://scene/zombie/big_zombie.gd" id="1_fjgnw"]
 [ext_resource type="Texture2D" uid="uid://dtuvqxnmtchsb" path="res://assets/enemies/Zombie_Big/Zombie_Big_Down_First-Attack-Sheet8.png" id="1_vbge5"]
 [ext_resource type="Texture2D" uid="uid://cj22l1oj17myg" path="res://assets/enemies/Zombie_Big/Zombie_Big_Side_First-Attack-Sheet8.png" id="2_fjgnw"]
 [ext_resource type="Texture2D" uid="uid://da24dufuhf82o" path="res://assets/enemies/Zombie_Big/Zombie_Big_Up_First-Attack-Sheet8.png" id="3_wcjwf"]

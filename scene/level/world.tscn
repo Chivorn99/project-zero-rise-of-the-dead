@@ -2,8 +2,8 @@
 
 [ext_resource type="TileSet" uid="uid://d1pns4jj81iqa" path="res://assets/tilesets/waste_land_tile.tres" id="1_0hn3o"]
 [ext_resource type="Script" uid="uid://b6gw1r8rixt7m" path="res://scene/level/world.gd" id="1_er4cb"]
-[ext_resource type="PackedScene" uid="uid://bdm8702e2w72g" path="res://scene/player.tscn" id="2_er4cb"]
-[ext_resource type="PackedScene" uid="uid://plsodaf7as2a" path="res://scene/zombie.tscn" id="4_er4cb"]
+[ext_resource type="PackedScene" uid="uid://bdm8702e2w72g" path="res://scene/player/player.tscn" id="2_er4cb"]
+[ext_resource type="PackedScene" uid="uid://plsodaf7as2a" path="res://scene/zombie/zombie.tscn" id="4_er4cb"]
 [ext_resource type="PackedScene" uid="uid://bu1nyt1l6ktiy" path="res://scene/items/heart_item.tscn" id="5_cud0k"]
 
 [node name="World" type="Node2D"]

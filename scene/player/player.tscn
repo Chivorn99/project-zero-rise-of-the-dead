@@ -1,7 +1,7 @@
 [gd_scene load_steps=108 format=3 uid="uid://bdm8702e2w72g"]
 
 [ext_resource type="Texture2D" uid="uid://78sreo03qev5" path="res://assets/sprites/Character/Main/Idle/Character_down_idle-Sheet6.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://baxoen72ye6x3" path="res://scene/player.gd" id="1_dk1vr"]
+[ext_resource type="Script" uid="uid://baxoen72ye6x3" path="res://scene/player/player.gd" id="1_dk1vr"]
 [ext_resource type="Texture2D" uid="uid://cp3dlvv25bs5c" path="res://assets/sprites/Character/Main/Idle/Character_side-left_idle-Sheet6.png" id="2_ct4mp"]
 [ext_resource type="Texture2D" uid="uid://b775s2vvfpc4i" path="res://assets/sprites/Character/Main/Death/Character_side-left_death1-Sheet6.png" id="2_j4wxg"]
 [ext_resource type="Texture2D" uid="uid://de38tm6xi2sd" path="res://assets/sprites/Character/Main/Punch/Character_down_punch-Sheet4.png" id="2_v4iqv"]
