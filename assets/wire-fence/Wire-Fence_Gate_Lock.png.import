@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biim8ld54q226"
-path="res://.godot/imported/Wire-Fence_Opening_Sheet8.png-efa7e105ca490eb7183ec4b4598e0059.ctex"
+uid="uid://cwippqoqr44aa"
+path="res://.godot/imported/Wire-Fence_Gate_Lock.png-e4c3780095784dff128dfc63bdf8eb5a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/Wire-Fence/Wire-Fence_Opening_Sheet8.png"
-dest_files=["res://.godot/imported/Wire-Fence_Opening_Sheet8.png-efa7e105ca490eb7183ec4b4598e0059.ctex"]
+source_file="res://assets/wire-fence/Wire-Fence_Gate_Lock.png"
+dest_files=["res://.godot/imported/Wire-Fence_Gate_Lock.png-e4c3780095784dff128dfc63bdf8eb5a.ctex"]
 
 [params]
 

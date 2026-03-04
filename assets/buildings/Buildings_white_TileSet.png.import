@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wksivecqhemr"
-path="res://.godot/imported/Buildings_gray_TileSet.png-cceb8b4fb04f7502cd83f8e622bea40c.ctex"
+uid="uid://dmqybbr6fhqyr"
+path="res://.godot/imported/Buildings_white_TileSet.png-a9bfdb526d77e2f4efa3e1e6a66e667b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/Buildings/Buildings_gray_TileSet.png"
-dest_files=["res://.godot/imported/Buildings_gray_TileSet.png-cceb8b4fb04f7502cd83f8e622bea40c.ctex"]
+source_file="res://assets/buildings/Buildings_white_TileSet.png"
+dest_files=["res://.godot/imported/Buildings_white_TileSet.png-a9bfdb526d77e2f4efa3e1e6a66e667b.ctex"]
 
 [params]
 

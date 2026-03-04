@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brtbyipb0cbr4"
-path="res://.godot/imported/Buildings_dark_TileSet.png-ae68fbc1278a6c71250ef0f885c79824.ctex"
+uid="uid://c8250iv7dt0bq"
+path="res://.godot/imported/Wire-Fence_TileSet.png-81f1f078df94e8a14d324f30432f6b24.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/Buildings/Buildings_dark_TileSet.png"
-dest_files=["res://.godot/imported/Buildings_dark_TileSet.png-ae68fbc1278a6c71250ef0f885c79824.ctex"]
+source_file="res://assets/wire-fence/Wire-Fence_TileSet.png"
+dest_files=["res://.godot/imported/Wire-Fence_TileSet.png-81f1f078df94e8a14d324f30432f6b24.ctex"]
 
 [params]
 
