@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://buam1bnuajh8p"]
+
+[ext_resource type="Texture2D" uid="uid://dtp8cq0dt8ssx" path="res://assets/buildings/CP_V1.0.4.png" id="1_gxmeq"]
+[ext_resource type="Script" uid="uid://cdwidjsplfhjb" path="res://door_trigger.gd" id="2_k43da"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t88t0"]
+size = Vector2(79, 95)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6e021"]
+size = Vector2(11, 13)
+
+[node name="Tower" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gxmeq")
+region_enabled = true
+region_rect = Rect2(259.9045, 17.999699, 103.00006, 119.00006)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2.5)
+shape = SubResource("RectangleShape2D_t88t0")
+
+[node name="DoorTrigger" type="Area2D" parent="."]
+script = ExtResource("2_k43da")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorTrigger"]
+position = Vector2(0.5, 43.5)
+shape = SubResource("RectangleShape2D_6e021")
+
+[connection signal="body_entered" from="DoorTrigger" to="DoorTrigger" method="_on_body_entered"]
+[connection signal="body_exited" from="DoorTrigger" to="DoorTrigger" method="_on_body_exited"]
