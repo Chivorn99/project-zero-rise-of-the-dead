@@ -1,26 +1,55 @@
-[gd_scene load_steps=4 format=3 uid="uid://w72h45ki3q08"]
+[gd_scene load_steps=8 format=3 uid="uid://w72h45ki3q08"]
 
-[ext_resource type="Texture2D" uid="uid://dtp8cq0dt8ssx" path="res://assets/buildings/CP_V1.0.4.png" id="1_85bf1"]
+[ext_resource type="Texture2D" uid="uid://csthm8voinb1h" path="res://assets/buildings/BD001.png" id="1_85bf1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mioeo"]
+atlas = ExtResource("1_85bf1")
+region = Rect2(32, 1023, 64, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24xjc"]
+atlas = ExtResource("1_85bf1")
+region = Rect2(144, 1023, 64, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m08sf"]
+atlas = ExtResource("1_85bf1")
+region = Rect2(256, 1023, 64, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yonhs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mioeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24xjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m08sf")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grfmm"]
-size = Vector2(63, 46)
+size = Vector2(62, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_85bf1"]
 size = Vector2(28, 15)
 
 [node name="Tower2" type="StaticBody2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_85bf1")
-region_enabled = true
-region_rect = Rect2(11.331223, 169.41594, 72.02692, 59.608475)
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yonhs")
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 1)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_grfmm")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1, 16.5)
+position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_85bf1")

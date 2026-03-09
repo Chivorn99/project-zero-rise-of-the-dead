@@ -1,7 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://buam1bnuajh8p"]
+[gd_scene load_steps=9 format=3 uid="uid://buam1bnuajh8p"]
 
-[ext_resource type="Texture2D" uid="uid://dtp8cq0dt8ssx" path="res://assets/buildings/CP_V1.0.4.png" id="1_gxmeq"]
+[ext_resource type="Texture2D" uid="uid://csthm8voinb1h" path="res://assets/buildings/BD001.png" id="1_gxmeq"]
 [ext_resource type="Script" uid="uid://cdwidjsplfhjb" path="res://door_trigger.gd" id="2_k43da"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k43da"]
+atlas = ExtResource("1_gxmeq")
+region = Rect2(32, 880, 80, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t88t0"]
+atlas = ExtResource("1_gxmeq")
+region = Rect2(145, 880, 80, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e021"]
+atlas = ExtResource("1_gxmeq")
+region = Rect2(258, 880, 80, 97)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mkbkr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k43da")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t88t0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e021")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t88t0"]
 size = Vector2(79, 95)
@@ -11,20 +40,20 @@ size = Vector2(11, 13)
 
 [node name="Tower" type="StaticBody2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_gxmeq")
-region_enabled = true
-region_rect = Rect2(259.9045, 17.999699, 103.00006, 119.00006)
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mkbkr")
+animation = &"open"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 2.5)
 shape = SubResource("RectangleShape2D_t88t0")
 
 [node name="DoorTrigger" type="Area2D" parent="."]
 script = ExtResource("2_k43da")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorTrigger"]
-position = Vector2(0.5, 43.5)
+position = Vector2(0, 41)
 shape = SubResource("RectangleShape2D_6e021")
 
 [connection signal="body_entered" from="DoorTrigger" to="DoorTrigger" method="_on_body_entered"]
