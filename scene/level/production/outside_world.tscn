@@ -2,11 +2,11 @@
 
 [ext_resource type="TileSet" uid="uid://d1pns4jj81iqa" path="res://assets/tilesets/waste_land_tile.tres" id="1_c3cmm"]
 [ext_resource type="TileSet" uid="uid://yni8a1hyi7ik" path="res://assets/tilesets/dark_green_tileset.tres" id="2_ekndc"]
-[ext_resource type="PackedScene" uid="uid://buam1bnuajh8p" path="res://scene/structure/tower.tscn" id="3_ekndc"]
-[ext_resource type="PackedScene" uid="uid://w72h45ki3q08" path="res://scene/structure/shop.tscn" id="4_4758o"]
-[ext_resource type="PackedScene" uid="uid://og5pkcshi7yy" path="res://scene/structure/tower_1.tscn" id="5_78bcp"]
-[ext_resource type="PackedScene" uid="uid://wvb32yxfc3r2" path="res://scene/structure/tower_2.tscn" id="6_f4jmp"]
-[ext_resource type="PackedScene" uid="uid://c8e33n0j54rtu" path="res://scene/structure/tower_3.tscn" id="7_kgyap"]
+[ext_resource type="PackedScene" uid="uid://buam1bnuajh8p" path="res://scene/structure/tower/tower.tscn" id="3_ekndc"]
+[ext_resource type="PackedScene" uid="uid://w72h45ki3q08" path="res://scene/structure/shop/shop.tscn" id="4_4758o"]
+[ext_resource type="PackedScene" uid="uid://og5pkcshi7yy" path="res://scene/structure/tower/tower_1.tscn" id="5_78bcp"]
+[ext_resource type="PackedScene" uid="uid://wvb32yxfc3r2" path="res://scene/structure/tower/tower_2.tscn" id="6_f4jmp"]
+[ext_resource type="PackedScene" uid="uid://c8e33n0j54rtu" path="res://scene/structure/tower/tower_3.tscn" id="7_kgyap"]
 
 [node name="OutsideWorld" type="Node2D"]
 
