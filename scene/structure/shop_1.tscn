@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://xdcs0dvppki8"]
+
+[ext_resource type="Texture2D" uid="uid://dtp8cq0dt8ssx" path="res://assets/buildings/CP_V1.0.4.png" id="1_av626"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grfmm"]
+size = Vector2(48, 47)
+
+[node name="Tower1" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_av626")
+region_enabled = true
+region_rect = Rect2(108.123245, 171.7561, 55.634552, 57.62149)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_grfmm")
