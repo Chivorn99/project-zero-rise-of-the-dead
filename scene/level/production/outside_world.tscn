@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://mphqth5bfn0x"]
+[gd_scene load_steps=13 format=4 uid="uid://mphqth5bfn0x"]
 
 [ext_resource type="TileSet" uid="uid://d1pns4jj81iqa" path="res://assets/tilesets/waste_land_tile.tres" id="1_c3cmm"]
 [ext_resource type="TileSet" uid="uid://yni8a1hyi7ik" path="res://assets/tilesets/dark_green_tileset.tres" id="2_ekndc"]
@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://og5pkcshi7yy" path="res://scene/structure/tower/tower_1.tscn" id="5_78bcp"]
 [ext_resource type="PackedScene" uid="uid://wvb32yxfc3r2" path="res://scene/structure/tower/tower_2.tscn" id="6_f4jmp"]
 [ext_resource type="PackedScene" uid="uid://c8e33n0j54rtu" path="res://scene/structure/tower/tower_3.tscn" id="7_kgyap"]
+[ext_resource type="PackedScene" uid="uid://dme24lsngfu1u" path="res://scene/structure/house/house_1.tscn" id="8_afhvy"]
+[ext_resource type="PackedScene" uid="uid://ctwrae87ixmf4" path="res://scene/structure/house/house_2.tscn" id="9_f2g0l"]
+[ext_resource type="PackedScene" uid="uid://bih8h5rwpffwy" path="res://scene/structure/house/house_3.tscn" id="10_bi2cl"]
+[ext_resource type="PackedScene" uid="uid://bugqt3smgokiv" path="res://scene/structure/shop/shop_2.tscn" id="11_kavuo"]
+[ext_resource type="PackedScene" uid="uid://bdm8702e2w72g" path="res://scene/player/player.tscn" id="12_f2g0l"]
 
 [node name="OutsideWorld" type="Node2D"]
 
@@ -34,3 +39,32 @@ position = Vector2(304, -37)
 
 [node name="Tower5" parent="." instance=ExtResource("7_kgyap")]
 position = Vector2(355, -38)
+
+[node name="Tower6" parent="." instance=ExtResource("8_afhvy")]
+position = Vector2(0, 150)
+
+[node name="Tower7" parent="." instance=ExtResource("9_f2g0l")]
+position = Vector2(-54, 147)
+
+[node name="Tower8" parent="." instance=ExtResource("10_bi2cl")]
+position = Vector2(-114, 147)
+
+[node name="Tower9" parent="." instance=ExtResource("8_afhvy")]
+position = Vector2(-296, 149)
+
+[node name="Tower10" parent="." instance=ExtResource("8_afhvy")]
+position = Vector2(-234, 149)
+
+[node name="Tower11" parent="." instance=ExtResource("9_f2g0l")]
+position = Vector2(-170, 147)
+
+[node name="Tower12" parent="." instance=ExtResource("11_kavuo")]
+position = Vector2(-366, 150)
+
+[node name="Tower13" parent="." instance=ExtResource("10_bi2cl")]
+position = Vector2(-463, 147)
+
+[node name="Tower14" parent="." instance=ExtResource("10_bi2cl")]
+position = Vector2(-433, 147)
+
+[node name="Player" parent="." instance=ExtResource("12_f2g0l")]

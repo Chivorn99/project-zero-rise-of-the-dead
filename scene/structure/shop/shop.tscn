@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://w72h45ki3q08"]
+[gd_scene load_steps=9 format=3 uid="uid://w72h45ki3q08"]
 
 [ext_resource type="Texture2D" uid="uid://csthm8voinb1h" path="res://assets/buildings/BD001.png" id="1_85bf1"]
+[ext_resource type="Script" uid="uid://shwtsspp4bgf" path="res://scene/structure/shop/enter_shop.gd" id="2_84iop"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mioeo"]
 atlas = ExtResource("1_85bf1")
@@ -32,10 +33,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grfmm"]
-size = Vector2(62, 47)
+size = Vector2(62, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_85bf1"]
-size = Vector2(28, 15)
+size = Vector2(28, 18.5)
 
 [node name="Tower2" type="StaticBody2D"]
 
@@ -45,11 +46,14 @@ frame = 2
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_grfmm")
 
 [node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_84iop")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 16)
+position = Vector2(0, 17.75)
 shape = SubResource("RectangleShape2D_85bf1")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
