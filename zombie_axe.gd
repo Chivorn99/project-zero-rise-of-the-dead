@@ -72,3 +72,10 @@ func play_directional_animation(action: String):
 			
 	# Combine the action (e.g., "walk") with the direction (e.g., "side")
 	anim.play(action + "_" + anim_direction)
+
+func _on_talk_radius_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+
+
+func _on_talk_radius_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.
