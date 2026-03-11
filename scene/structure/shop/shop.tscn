@@ -41,6 +41,7 @@ size = Vector2(28, 18.5)
 [node name="Tower2" type="StaticBody2D"]
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_yonhs")
 frame = 2
 frame_progress = 1.0

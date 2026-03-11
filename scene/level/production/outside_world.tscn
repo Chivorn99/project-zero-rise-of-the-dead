@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bdm8702e2w72g" path="res://scene/player/player.tscn" id="12_f2g0l"]
 
 [node name="OutsideWorld" type="Node2D"]
+y_sort_enabled = true
 
 [node name="WasteLand" type="TileMapLayer" parent="."]
 tile_set = ExtResource("1_c3cmm")

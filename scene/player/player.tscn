@@ -698,9 +698,10 @@ script = ExtResource("1_dk1vr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3vgh4")
-animation = &"pickup_down"
+animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="UI" type="CanvasLayer" parent="."]

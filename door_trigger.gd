@@ -9,9 +9,11 @@ func _process(delta):
 		get_tree().change_scene_to_file(inside_level_path)
 
 func _on_body_entered(body):
+	print("Something touched the door: ", body.name) 
 	if body.name == "Player":
 		player_at_door = true
 
 func _on_body_exited(body):
+	print("Something left the door: ", body.name) 
 	if body.name == "Player":
 		player_at_door = false
