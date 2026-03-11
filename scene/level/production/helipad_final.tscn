@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b17mp8de8ybuf"]
+
+[node name="HelipadFinal" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
