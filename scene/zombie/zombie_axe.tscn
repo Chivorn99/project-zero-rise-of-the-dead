@@ -818,6 +818,11 @@ radius = 27.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6x54"]
 bg_color = Color(0.39080545, 0.39080548, 0.39080536, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0.5294118, 0.98039216, 1)
 
 [node name="ZombieAxe" type="CharacterBody2D"]
 script = ExtResource("1_k2w8r")
@@ -845,8 +850,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_p6x54")
 
 [node name="Label" type="Label" parent="DialogueUI/Panel"]
 layout_mode = 0
-offset_right = 573.0
-offset_bottom = 185.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 565.0
+offset_bottom = 176.0
 autowrap_mode = 3
 
 [connection signal="body_entered" from="TalkRadius" to="." method="_on_talk_radius_body_entered"]

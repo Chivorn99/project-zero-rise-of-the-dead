@@ -7,6 +7,8 @@ var attack_radius = 25.0
 var damage = 20
 var attack_cooldown = 0.0
 const ATTACK_COOLDOWN_TIME = 0.8
+var health = 150
+var is_dying = false
 
 # Added the TALKING state!
 enum State {WAITING, TALKING, IDLE, CHASE, ATTACK}
@@ -23,6 +25,7 @@ var player = null
 func _ready():
 	player = get_tree().get_root().find_child("Player", true, false)
 	anim.play("idle_down")
+	anim.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 	dialogue_ui.hide() # Ensure the UI is hidden when the scene loads
 
 func _process(delta):
@@ -39,7 +42,7 @@ func _process(delta):
 		$TalkRadius.set_deferred("monitoring", false)
 
 func _physics_process(delta):
-	if player == null:
+	if player == null or is_dying:
 		return
 
 	if attack_cooldown > 0:
@@ -113,6 +116,26 @@ func perform_attack():
 	# End attack state
 	is_attacking = false
 	current_state = State.CHASE
+
+func take_damage(amount):
+	if is_dying:
+		return
+	
+	health -= amount
+	print("Zombie Axe hit! Health: ", health)
+	
+	if health <= 0:
+		die()
+
+func die():
+	is_dying = true
+	is_attacking = false
+	velocity = Vector2.ZERO
+	anim.play("first_death_side")
+
+func _on_animated_sprite_2d_animation_finished():
+	if anim.animation.begins_with("first_death"):
+		queue_free()
 
 # --- Talk Radius Signals ---
 func _on_talk_radius_body_entered(body):
