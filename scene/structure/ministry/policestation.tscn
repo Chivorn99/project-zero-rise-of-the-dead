@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d12uyce4j8n2g"]
+
+[ext_resource type="Texture2D" uid="uid://b8kows711fggw" path="res://assets/infrastructure/building/PoliceStation.png" id="1_kondp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grfmm"]
+size = Vector2(161, 85)
+
+[node name="PoliceStation" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.444, 0.444)
+texture = ExtResource("1_kondp")
+region_enabled = true
+region_rect = Rect2(-4.9888306, -1.8602066, 376.74933, 218.39752)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_grfmm")
