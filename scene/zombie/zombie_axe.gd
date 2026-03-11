@@ -10,6 +10,15 @@ const ATTACK_COOLDOWN_TIME = 0.8
 var health = 150
 var is_dying = false
 
+# Revival system
+var has_revived = false
+var is_reviving = false
+var revive_reverse_frame = -1
+var revive_frame_timer = 0.0
+var revive_frame_delay = 0.0
+var ground_timer = 0.0
+var waiting_on_ground = false
+
 # Added the TALKING state!
 enum State {WAITING, TALKING, IDLE, CHASE, ATTACK}
 var current_state = State.WAITING
@@ -25,6 +34,16 @@ var player = null
 func _ready():
 	player = get_tree().get_root().find_child("Player", true, false)
 	anim.play("idle_down")
+	if anim.sprite_frames:
+		if anim.sprite_frames.has_animation("first_death_side"):
+			anim.sprite_frames.set_animation_loop("first_death_side", false)
+		if anim.sprite_frames.has_animation("second_death_side"):
+			anim.sprite_frames.set_animation_loop("second_death_side", false)
+		# Set attack animations to not loop
+		for anim_name in ["first_attack_side", "first_attack_up", "first_attack_down", 
+						   "second_attack_side", "second_attack_up", "second_attack_down"]:
+			if anim.sprite_frames.has_animation(anim_name):
+				anim.sprite_frames.set_animation_loop(anim_name, false)
 	anim.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
 	dialogue_ui.hide() # Ensure the UI is hidden when the scene loads
 
@@ -42,7 +61,27 @@ func _process(delta):
 		$TalkRadius.set_deferred("monitoring", false)
 
 func _physics_process(delta):
-	if player == null or is_dying:
+	# Ground waiting before revival
+	if waiting_on_ground:
+		ground_timer -= delta
+		if ground_timer <= 0:
+			waiting_on_ground = false
+			_start_reverse_playback()
+		return
+
+	# REVIVAL animation (reverse playback)
+	if is_reviving and revive_reverse_frame >= 0:
+		revive_frame_timer -= delta
+		if revive_frame_timer <= 0:
+			revive_reverse_frame -= 1
+			if revive_reverse_frame < 0:
+				_finish_revive()
+			else:
+				anim.frame = revive_reverse_frame
+				revive_frame_timer = revive_frame_delay
+		return
+
+	if player == null or is_dying or is_reviving:
 		return
 
 	if attack_cooldown > 0:
@@ -78,7 +117,11 @@ func _physics_process(delta):
 		State.ATTACK:
 			velocity = Vector2.ZERO
 			is_attacking = true
-			play_directional_animation("first_attack")
+			# After revival, use second_attack more often (70% chance)
+			var attack_type = "first_attack"
+			if has_revived:
+				attack_type = "second_attack" if randf() < 0.7 else "first_attack"
+			play_directional_animation(attack_type)
 			perform_attack()
 
 # --- Animation Logic ---
@@ -105,20 +148,13 @@ func perform_attack():
 	await get_tree().create_timer(0.3).timeout
 	
 	# Deal damage if still valid
-	if player != null:
+	if player != null and not is_dying and not is_reviving:
 		var dist = global_position.distance_to(player.global_position)
 		if dist < attack_radius * 1.5 and player.has_method("take_damage"):
 			player.take_damage(damage)
-	
-	# Wait for animation to finish (adjust time to match your animation length)
-	await get_tree().create_timer(0.5).timeout
-	
-	# End attack state
-	is_attacking = false
-	current_state = State.CHASE
 
 func take_damage(amount):
-	if is_dying:
+	if is_dying or is_reviving:
 		return
 	
 	health -= amount
@@ -131,10 +167,55 @@ func die():
 	is_dying = true
 	is_attacking = false
 	velocity = Vector2.ZERO
-	anim.play("first_death_side")
+
+	if not has_revived:
+		anim.play("first_death_side")
+	else:
+		anim.play("second_death_side")
+
+func _start_ground_wait():
+	is_reviving = true
+	waiting_on_ground = true
+	ground_timer = 2.0
+	print("Zombie Axe collapsed... lying on the ground")
+
+	var last_frame = anim.sprite_frames.get_frame_count("first_death_side") - 1
+	anim.pause()
+	anim.frame = last_frame
+
+func _start_reverse_playback():
+	print("Zombie Axe getting back up!")
+	var frame_count = anim.sprite_frames.get_frame_count("first_death_side")
+	var fps = anim.sprite_frames.get_animation_speed("first_death_side")
+	if fps <= 0:
+		fps = 5.0
+
+	revive_reverse_frame = frame_count - 1
+	revive_frame_delay = 1.0 / fps
+	revive_frame_timer = revive_frame_delay
+	anim.frame = revive_reverse_frame
+
+func _finish_revive():
+	revive_reverse_frame = -1
+	has_revived = true
+	is_dying = false
+	is_reviving = false
+	waiting_on_ground = false
+	health = 75
+	speed = 55.0  # Faster after revival
+	attack_cooldown = 0.5
+	current_state = State.CHASE
+	anim.play("idle_down")
+	print("Zombie Axe revived! Health: ", health)
 
 func _on_animated_sprite_2d_animation_finished():
-	if anim.animation.begins_with("first_death"):
+	if anim.animation.begins_with("first_attack") or anim.animation.begins_with("second_attack"):
+		is_attacking = false
+		attack_cooldown = ATTACK_COOLDOWN_TIME
+	elif anim.animation == "first_death_side":
+		if not is_reviving:
+			_start_ground_wait()
+	elif anim.animation == "second_death_side":
 		queue_free()
 
 # --- Talk Radius Signals ---
