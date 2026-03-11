@@ -1,7 +1,7 @@
 extends Area2D
 
 var player_at_door = false
-var inside_level_path = "res://scene/level/production/shop_interior.tscn"
+var inside_level_path = "res://scene/level/production/helipad_final.tscn"
 
 func _process(delta):
 	if player_at_door and Input.is_key_pressed(KEY_E):
