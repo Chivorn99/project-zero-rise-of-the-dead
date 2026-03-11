@@ -1,6 +1,6 @@
-[gd_scene load_steps=121 format=3 uid="uid://dultqe2nrm2ap"]
+[gd_scene load_steps=123 format=3 uid="uid://dultqe2nrm2ap"]
 
-[ext_resource type="Script" uid="uid://77w132w7rsuv" path="res://zombie_axe.gd" id="1_k2w8r"]
+[ext_resource type="Script" uid="uid://77w132w7rsuv" path="res://scene/zombie/zombie_axe.gd" id="1_k2w8r"]
 [ext_resource type="Texture2D" uid="uid://buooxqo7fsflc" path="res://assets/enemies/Zombie_Axe/Zombie_Axe_Down_First-Attack-Sheet7.png" id="2_p6x54"]
 [ext_resource type="Texture2D" uid="uid://broew5m2p4aqw" path="res://assets/enemies/Zombie_Axe/Zombie_Axe_Side_First-Attack-Sheet7.png" id="3_oh0ci"]
 [ext_resource type="Texture2D" uid="uid://cqpshe5sufeau" path="res://assets/enemies/Zombie_Axe/Zombie_Axe_Up_First-Attack-Sheet7.png" id="4_0pyox"]
@@ -813,6 +813,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkf7a"]
 size = Vector2(14, 18)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_k2w8r"]
+radius = 27.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6x54"]
+bg_color = Color(0.39080545, 0.39080548, 0.39080536, 1)
+
 [node name="ZombieAxe" type="CharacterBody2D"]
 script = ExtResource("1_k2w8r")
 
@@ -822,3 +828,26 @@ animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_rkf7a")
+
+[node name="TalkRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkRadius"]
+shape = SubResource("CircleShape2D_k2w8r")
+
+[node name="DialogueUI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="DialogueUI"]
+offset_left = 369.0
+offset_top = 409.0
+offset_right = 942.0
+offset_bottom = 594.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_p6x54")
+
+[node name="Label" type="Label" parent="DialogueUI/Panel"]
+layout_mode = 0
+offset_right = 573.0
+offset_bottom = 185.0
+autowrap_mode = 3
+
+[connection signal="body_entered" from="TalkRadius" to="." method="_on_talk_radius_body_entered"]
+[connection signal="body_exited" from="TalkRadius" to="." method="_on_talk_radius_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://mphqth5bfn0x"]
+[gd_scene load_steps=15 format=4 uid="uid://mphqth5bfn0x"]
 
 [ext_resource type="TileSet" uid="uid://d1pns4jj81iqa" path="res://assets/tilesets/waste_land_tile.tres" id="1_c3cmm"]
 [ext_resource type="TileSet" uid="uid://yni8a1hyi7ik" path="res://assets/tilesets/dark_green_tileset.tres" id="2_ekndc"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bugqt3smgokiv" path="res://scene/structure/shop/shop_2.tscn" id="11_kavuo"]
 [ext_resource type="PackedScene" uid="uid://bdm8702e2w72g" path="res://scene/player/player.tscn" id="12_f2g0l"]
 [ext_resource type="PackedScene" uid="uid://bpoascbsq0h32" path="res://scene/structure/ministry/hospital.tscn" id="13_bi2cl"]
+[ext_resource type="PackedScene" uid="uid://d12uyce4j8n2g" path="res://scene/structure/ministry/policestation.tscn" id="14_kavuo"]
 
 [node name="OutsideWorld" type="Node2D"]
 y_sort_enabled = true
@@ -76,3 +77,6 @@ position = Vector2(-233, 182)
 
 [node name="Hospital" parent="." instance=ExtResource("13_bi2cl")]
 position = Vector2(211, 120)
+
+[node name="PoliceStation" parent="." instance=ExtResource("14_kavuo")]
+position = Vector2(-201, -206)

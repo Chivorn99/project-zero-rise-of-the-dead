@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://b17mp8de8ybuf"]
+[gd_scene load_steps=8 format=4 uid="uid://b17mp8de8ybuf"]
 
 [ext_resource type="TileSet" uid="uid://cyb6j7ymwa86i" path="res://assets/tilesets/floor_concrete.tres" id="1_qrt48"]
 [ext_resource type="Texture2D" uid="uid://ckfff2ummsrhi" path="res://assets/infrastructure/floor/Tiles.png" id="2_jvm3f"]
 [ext_resource type="PackedScene" uid="uid://bih8h5rwpffwy" path="res://scene/structure/house/house_3.tscn" id="3_jvm3f"]
 [ext_resource type="PackedScene" uid="uid://bdm8702e2w72g" path="res://scene/player/player.tscn" id="4_g8g7u"]
+[ext_resource type="PackedScene" uid="uid://dultqe2nrm2ap" path="res://scene/zombie/zombie_axe.tscn" id="5_l8f7w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g8g7u"]
 texture = ExtResource("2_jvm3f")
@@ -213,3 +214,6 @@ position = Vector2(-179, -21)
 
 [node name="Player" parent="." instance=ExtResource("4_g8g7u")]
 position = Vector2(-179, 2)
+
+[node name="ZombieAxe" parent="." instance=ExtResource("5_l8f7w")]
+position = Vector2(-1, -1)

@@ -2,33 +2,36 @@ extends CharacterBody2D
 
 # --- Boss Stats ---
 var speed = 45.0
-var detection_radius = 150.0 
-var attack_radius = 25.0     
+var detection_radius = 150.0
+var attack_radius = 25.0
 
-# --- State Machine Update ---
-# We added WAITING as the very first state!
-enum State { WAITING, IDLE, CHASE, ATTACK }
-var current_state = State.WAITING 
+# Added the TALKING state!
+enum State {WAITING, TALKING, IDLE, CHASE, ATTACK}
+var current_state = State.WAITING
 
 var player_in_talk_zone = false
 
 @onready var anim = $AnimatedSprite2D
+@onready var dialogue_ui = $DialogueUI
+@onready var dialogue_label = $DialogueUI/Panel/Label
 var player = null
 
 func _ready():
 	player = get_tree().get_root().find_child("Player", true, false)
 	anim.play("idle_down")
+	dialogue_ui.hide() # Ensure the UI is hidden when the scene loads
 
 func _process(delta):
-	# If he is waiting for the cutscene, and Varaman presses 'E'
+	# 1. Trigger the conversation
 	if current_state == State.WAITING and player_in_talk_zone and Input.is_key_pressed(KEY_E):
-		print("Boss: 'You made it to the helipad, Varaman... but you're too late!'")
-		print("Boss: *RAAAARRGGHH!*")
+		dialogue_label.text = "You made it to the helipad, Varaman... but you're too late! RAAAARRGGHH!"
+		dialogue_ui.show()
+		current_state = State.TALKING
 		
-		# The conversation is over. Start the fight!
+	# 2. Read the text, press Enter, and start the fight!
+	elif current_state == State.TALKING and Input.is_key_pressed(KEY_ENTER):
+		dialogue_ui.hide()
 		current_state = State.CHASE
-		
-		# Turn off the talk zone so you can't talk to him while he's attacking
 		$TalkRadius.set_deferred("monitoring", false)
 
 func _physics_process(delta):
@@ -37,8 +40,8 @@ func _physics_process(delta):
 
 	var distance_to_player = global_position.distance_to(player.global_position)
 
-	# ONLY run the distance/chase checks if the boss is NOT in a cutscene
-	if current_state != State.WAITING:
+	# Only check for chasing/attacking if he isn't waiting or talking
+	if current_state != State.WAITING and current_state != State.TALKING:
 		if distance_to_player <= attack_radius:
 			current_state = State.ATTACK
 		elif distance_to_player <= detection_radius:
@@ -48,11 +51,7 @@ func _physics_process(delta):
 
 	# Execute the action based on the state
 	match current_state:
-		State.WAITING:
-			velocity = Vector2.ZERO
-			play_directional_animation("idle")
-			
-		State.IDLE:
+		State.WAITING, State.TALKING, State.IDLE:
 			velocity = Vector2.ZERO
 			play_directional_animation("idle")
 			
@@ -66,14 +65,14 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 			play_directional_animation("first_attack")
 
-# --- Animation Logic (Unchanged) ---
+# --- Animation Logic ---
 func play_directional_animation(action: String):
 	var direction = (player.global_position - global_position).normalized()
-	var anim_direction = "down" 
+	var anim_direction = "down"
 	
 	if abs(direction.x) > abs(direction.y):
 		anim_direction = "side"
-		anim.flip_h = direction.x < 0 
+		anim.flip_h = direction.x < 0
 	else:
 		if direction.y > 0:
 			anim_direction = "down"
