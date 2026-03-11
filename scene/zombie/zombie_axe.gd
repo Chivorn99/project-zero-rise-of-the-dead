@@ -4,10 +4,14 @@ extends CharacterBody2D
 var speed = 45.0
 var detection_radius = 150.0
 var attack_radius = 25.0
+var damage = 20
+var attack_cooldown = 0.0
+const ATTACK_COOLDOWN_TIME = 0.8
 
 # Added the TALKING state!
 enum State {WAITING, TALKING, IDLE, CHASE, ATTACK}
 var current_state = State.WAITING
+var is_attacking = false
 
 var player_in_talk_zone = false
 
@@ -38,11 +42,18 @@ func _physics_process(delta):
 	if player == null:
 		return
 
+	if attack_cooldown > 0:
+		attack_cooldown -= delta
+
 	var distance_to_player = global_position.distance_to(player.global_position)
+
+	# Don't change state while attacking
+	if is_attacking:
+		return
 
 	# Only check for chasing/attacking if he isn't waiting or talking
 	if current_state != State.WAITING and current_state != State.TALKING:
-		if distance_to_player <= attack_radius:
+		if distance_to_player <= attack_radius and attack_cooldown <= 0:
 			current_state = State.ATTACK
 		elif distance_to_player <= detection_radius:
 			current_state = State.CHASE
@@ -63,7 +74,9 @@ func _physics_process(delta):
 			
 		State.ATTACK:
 			velocity = Vector2.ZERO
+			is_attacking = true
 			play_directional_animation("first_attack")
+			perform_attack()
 
 # --- Animation Logic ---
 func play_directional_animation(action: String):
@@ -80,6 +93,26 @@ func play_directional_animation(action: String):
 			anim_direction = "up"
 			
 	anim.play(action + "_" + anim_direction)
+
+# --- Damage Logic ---
+func perform_attack():
+	attack_cooldown = ATTACK_COOLDOWN_TIME
+	
+	# Wait for damage timing
+	await get_tree().create_timer(0.3).timeout
+	
+	# Deal damage if still valid
+	if player != null:
+		var dist = global_position.distance_to(player.global_position)
+		if dist < attack_radius * 1.5 and player.has_method("take_damage"):
+			player.take_damage(damage)
+	
+	# Wait for animation to finish (adjust time to match your animation length)
+	await get_tree().create_timer(0.5).timeout
+	
+	# End attack state
+	is_attacking = false
+	current_state = State.CHASE
 
 # --- Talk Radius Signals ---
 func _on_talk_radius_body_entered(body):
