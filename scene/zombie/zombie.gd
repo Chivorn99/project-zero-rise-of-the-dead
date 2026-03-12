@@ -75,7 +75,7 @@ func attack(direction):
 		return
 	var dist = global_position.distance_to(player.global_position)
 	if dist < DAMAGE_RANGE and player.has_method("take_damage"):
-		player.take_damage(10)
+		player.take_damage(8)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation.begins_with("first_attack"):

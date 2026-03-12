@@ -4,10 +4,10 @@ extends CharacterBody2D
 var speed = 45.0
 var detection_radius = 150.0
 var attack_radius = 25.0
-var damage = 20
+var damage = 25
 var attack_cooldown = 0.0
 const ATTACK_COOLDOWN_TIME = 0.8
-var health = 150
+var health = 250
 var is_dying = false
 
 # Revival system
@@ -201,7 +201,7 @@ func _finish_revive():
 	is_dying = false
 	is_reviving = false
 	waiting_on_ground = false
-	health = 75
+	health = 125
 	speed = 55.0  # Faster after revival
 	attack_cooldown = 0.5
 	current_state = State.CHASE

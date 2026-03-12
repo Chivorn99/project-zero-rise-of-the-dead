@@ -9,7 +9,7 @@ const DAMAGE_RANGE = 30.0
 var player = null
 var is_attacking = false
 var is_dying = false
-var health = 150
+var health = 175
 var attack_cooldown = 0.0
 const ATTACK_COOLDOWN_TIME = 0.8
 var use_second_attack = false
@@ -127,7 +127,7 @@ func deal_damage():
         return
     var dist = global_position.distance_to(player.global_position)
     if dist < DAMAGE_RANGE and player.has_method("take_damage"):
-        player.take_damage(20)
+        player.take_damage(15)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
     if anim.animation.begins_with("first_attack") or anim.animation.begins_with("second_attack"):
@@ -188,7 +188,7 @@ func _finish_revive():
     is_dying = false
     is_reviving = false
     waiting_on_ground = false
-    health = 75
+    health = 100
     attack_cooldown = 0.5
     anim.play("idle_down")
     print("Big Zombie revived! Health: ", health)
