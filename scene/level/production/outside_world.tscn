@@ -156,3 +156,15 @@ position = Vector2(-74, -354)
 
 [node name="CarRust14" parent="." instance=ExtResource("16_iu6m4")]
 position = Vector2(76, -130)
+
+[node name="CarRust15" parent="." instance=ExtResource("15_60anj")]
+position = Vector2(-274, -164)
+
+[node name="CarRust16" parent="." instance=ExtResource("15_60anj")]
+position = Vector2(-160, -143)
+
+[node name="CarUpside8" parent="." instance=ExtResource("18_hdpqh")]
+position = Vector2(-200, -106)
+
+[node name="CarRust17" parent="." instance=ExtResource("16_iu6m4")]
+position = Vector2(-90, -213)

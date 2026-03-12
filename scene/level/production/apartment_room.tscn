@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=4 uid="uid://bga8ug8ri06ye"]
+[gd_scene load_steps=13 format=4 uid="uid://bga8ug8ri06ye"]
 
 [ext_resource type="TileSet" uid="uid://bcvgnokqv2b7n" path="res://assets/tilesets/apartment_room.tres" id="1_f1fnc"]
 [ext_resource type="Script" uid="uid://dx30yn33grlbw" path="res://scene/level/production/exit_to_hallway.gd" id="2_bq26i"]
 [ext_resource type="PackedScene" uid="uid://bdm8702e2w72g" path="res://scene/player/player.tscn" id="2_v6qmm"]
+[ext_resource type="PackedScene" uid="uid://c5yiockp8f80b" path="res://scene/object/furniture/furniture6.tscn" id="4_qsnii"]
+[ext_resource type="PackedScene" uid="uid://dbcpbprp6rah0" path="res://scene/object/furniture/furniture7.tscn" id="5_icntl"]
+[ext_resource type="PackedScene" uid="uid://crnyo7hv3sjv8" path="res://scene/object/furniture/furniture.tscn" id="6_8haxl"]
+[ext_resource type="PackedScene" uid="uid://csyhr0cauv71b" path="res://scene/object/furniture/furniture9.tscn" id="6_juykb"]
+[ext_resource type="PackedScene" uid="uid://dljxuecy3umn" path="res://scene/object/furniture/furniture1.tscn" id="7_juykb"]
+[ext_resource type="PackedScene" uid="uid://h3lqldnqtdo7" path="res://scene/object/furniture/furniture4.tscn" id="8_o74hd"]
+[ext_resource type="PackedScene" uid="uid://dfjy7a3sv4swa" path="res://scene/object/furniture/furniture8.tscn" id="9_8haxl"]
+[ext_resource type="PackedScene" uid="uid://r5gb3y4ycr1d" path="res://scene/object/furniture/furniture5.tscn" id="9_ta5np"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v6qmm"]
 size = Vector2(10, 20)
@@ -19,6 +27,49 @@ script = ExtResource("2_bq26i")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitToHallway"]
 position = Vector2(127, 8)
 shape = SubResource("RectangleShape2D_v6qmm")
+
+[node name="Toilet" parent="." instance=ExtResource("4_qsnii")]
+position = Vector2(-152, 69)
+scale = Vector2(0.666, 0.666)
+
+[node name="Sink" parent="." instance=ExtResource("5_icntl")]
+position = Vector2(-152, 20)
+scale = Vector2(0.666, 0.666)
+
+[node name="Lamp2" parent="." instance=ExtResource("6_8haxl")]
+position = Vector2(6, 64)
+scale = Vector2(0.666, 0.666)
+
+[node name="Lamp1" parent="." instance=ExtResource("6_8haxl")]
+position = Vector2(-59.999996, -36)
+scale = Vector2(0.666, 0.666)
+
+[node name="Carpet" parent="." instance=ExtResource("6_juykb")]
+position = Vector2(-20, -2)
+
+[node name="Couch" parent="." instance=ExtResource("7_juykb")]
+position = Vector2(-19, -26.999998)
+scale = Vector2(0.666, 0.666)
+
+[node name="Desk2" parent="." instance=ExtResource("8_o74hd")]
+position = Vector2(5.999996, -30)
+scale = Vector2(0.666, 0.666)
+
+[node name="Desk1" parent="." instance=ExtResource("8_o74hd")]
+position = Vector2(-45, -30)
+scale = Vector2(0.666, 0.666)
+
+[node name="Fridge" parent="." instance=ExtResource("9_ta5np")]
+position = Vector2(-114.99999, -40)
+scale = Vector2(0.666, 0.666)
+
+[node name="Table2" parent="." instance=ExtResource("9_8haxl")]
+position = Vector2(-19, -9)
+scale = Vector2(0.666, 0.666)
+
+[node name="Table1" parent="." instance=ExtResource("9_8haxl")]
+position = Vector2(-142, -33)
+scale = Vector2(0.666, 0.666)
 
 [node name="Player" parent="." instance=ExtResource("2_v6qmm")]
 position = Vector2(-8, 22)

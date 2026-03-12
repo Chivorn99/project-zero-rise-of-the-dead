@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://p5ajsx0ula1b"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2wh6o"]
+load_path = "res://.godot/imported/TopDownHouse_FurnitureState1.png-08a32c7401b852e057a6daa0920fad77.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grfmm"]
+size = Vector2(15, 8)
+
+[node name="Furniture" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CompressedTexture2D_2wh6o")
+region_enabled = true
+region_rect = Rect2(22.375927, 257.36548, 20.875004, 29.87616)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -3)
+shape = SubResource("RectangleShape2D_grfmm")
