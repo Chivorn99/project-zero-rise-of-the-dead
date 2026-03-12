@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbfa632q6l75a"]
+
+[ext_resource type="Script" uid="uid://cw6e8vujx5h0b" path="res://scene/level/ui/main_menu.gd" id="1_lx4vd"]
+[ext_resource type="Texture2D" uid="uid://bghrfyihy2pa6" path="res://assets/ui/Rise of the Dead Menu.png" id="2_rlgwx"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lx4vd")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rlgwx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 693.0
+offset_top = 426.0
+offset_right = 1039.0
+offset_bottom = 648.0
+theme_override_constants/separation = 15
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "New Game"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
