@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://mphqth5bfn0x"]
+[gd_scene load_steps=19 format=4 uid="uid://mphqth5bfn0x"]
 
 [ext_resource type="TileSet" uid="uid://d1pns4jj81iqa" path="res://assets/tilesets/waste_land_tile.tres" id="1_c3cmm"]
 [ext_resource type="TileSet" uid="uid://yni8a1hyi7ik" path="res://assets/tilesets/dark_green_tileset.tres" id="2_ekndc"]
@@ -14,6 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://bdm8702e2w72g" path="res://scene/player/player.tscn" id="12_f2g0l"]
 [ext_resource type="PackedScene" uid="uid://bpoascbsq0h32" path="res://scene/structure/ministry/hospital.tscn" id="13_bi2cl"]
 [ext_resource type="PackedScene" uid="uid://d12uyce4j8n2g" path="res://scene/structure/ministry/policestation.tscn" id="14_kavuo"]
+[ext_resource type="PackedScene" uid="uid://bay5w4c44123" path="res://scene/object/car/car_rust_1.tscn" id="15_60anj"]
+[ext_resource type="PackedScene" uid="uid://cu3x82suxv4ab" path="res://scene/object/car/car_rust_2.tscn" id="16_iu6m4"]
+[ext_resource type="PackedScene" uid="uid://b7s3r7tc0e11m" path="res://scene/object/car/tractor_rust.tscn" id="17_xshff"]
+[ext_resource type="PackedScene" uid="uid://fa7dfjt3t6no" path="res://scene/object/car/car_upside.tscn" id="18_hdpqh"]
 
 [node name="OutsideWorld" type="Node2D"]
 y_sort_enabled = true
@@ -80,3 +84,75 @@ position = Vector2(211, 120)
 
 [node name="PoliceStation" parent="." instance=ExtResource("14_kavuo")]
 position = Vector2(-201, -206)
+
+[node name="CarRust" parent="." instance=ExtResource("15_60anj")]
+position = Vector2(48, 216)
+
+[node name="CarRust2" parent="." instance=ExtResource("16_iu6m4")]
+position = Vector2(-114, 341)
+
+[node name="CarRust3" parent="." instance=ExtResource("16_iu6m4")]
+position = Vector2(86, 290)
+
+[node name="TractorRust" parent="." instance=ExtResource("17_xshff")]
+position = Vector2(-39, -114)
+
+[node name="CarUpside" parent="." instance=ExtResource("18_hdpqh")]
+position = Vector2(195, 30)
+
+[node name="CarRust4" parent="." instance=ExtResource("16_iu6m4")]
+position = Vector2(265, 180)
+
+[node name="CarUpside2" parent="." instance=ExtResource("18_hdpqh")]
+position = Vector2(286, 205)
+
+[node name="CarRust5" parent="." instance=ExtResource("15_60anj")]
+position = Vector2(328, 87)
+
+[node name="CarRust6" parent="." instance=ExtResource("15_60anj")]
+position = Vector2(-372, 441)
+
+[node name="CarUpside3" parent="." instance=ExtResource("18_hdpqh")]
+position = Vector2(-415, 461)
+
+[node name="TractorRust2" parent="." instance=ExtResource("17_xshff")]
+position = Vector2(333, 409)
+
+[node name="CarUpside4" parent="." instance=ExtResource("18_hdpqh")]
+position = Vector2(307, 383)
+
+[node name="CarRust7" parent="." instance=ExtResource("15_60anj")]
+position = Vector2(85, 165)
+
+[node name="CarUpside5" parent="." instance=ExtResource("18_hdpqh")]
+position = Vector2(41, 40)
+
+[node name="CarRust8" parent="." instance=ExtResource("16_iu6m4")]
+position = Vector2(76, -55)
+
+[node name="CarUpside6" parent="." instance=ExtResource("18_hdpqh")]
+position = Vector2(-347, 318)
+
+[node name="CarRust9" parent="." instance=ExtResource("16_iu6m4")]
+position = Vector2(337, 29)
+
+[node name="CarRust10" parent="." instance=ExtResource("15_60anj")]
+position = Vector2(227, -360)
+
+[node name="CarRust11" parent="." instance=ExtResource("16_iu6m4")]
+position = Vector2(-404, -352)
+
+[node name="CarUpside7" parent="." instance=ExtResource("18_hdpqh")]
+position = Vector2(411, -229)
+
+[node name="CarRust12" parent="." instance=ExtResource("16_iu6m4")]
+position = Vector2(-418, 29)
+
+[node name="TractorRust3" parent="." instance=ExtResource("17_xshff")]
+position = Vector2(319, -405)
+
+[node name="CarRust13" parent="." instance=ExtResource("15_60anj")]
+position = Vector2(-74, -354)
+
+[node name="CarRust14" parent="." instance=ExtResource("16_iu6m4")]
+position = Vector2(76, -130)
