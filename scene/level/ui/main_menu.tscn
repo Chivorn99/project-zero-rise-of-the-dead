@@ -1,13 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbfa632q6l75a"]
 
 [ext_resource type="Script" uid="uid://cw6e8vujx5h0b" path="res://scene/level/ui/main_menu.gd" id="1_lx4vd"]
-[ext_resource type="Texture2D" uid="uid://bghrfyihy2pa6" path="res://assets/ui/Rise of the Dead Menu.png" id="2_rlgwx"]
+[ext_resource type="Texture2D" uid="uid://bghrfyihy2pa6" path="res://assets/ui/menu_banner/Rise of the Dead Menu.png" id="2_rlgwx"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchor_left = -0.11100001
+anchor_right = 1.1110001
 anchor_bottom = 1.0
+offset_left = 213.12001
+offset_right = -213.12012
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lx4vd")
@@ -22,11 +24,18 @@ grow_vertical = 2
 texture = ExtResource("2_rlgwx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 693.0
-offset_top = 426.0
-offset_right = 1039.0
-offset_bottom = 648.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.0
+offset_top = -111.0
+offset_right = 173.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 15
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]

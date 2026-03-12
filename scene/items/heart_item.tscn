@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bu1nyt1l6ktiy"]
 
 [ext_resource type="Script" uid="uid://kwgv53goiqgd" path="res://scene/items/heart_item.gd" id="1_5ek8a"]
-[ext_resource type="Texture2D" uid="uid://cjifjacmvexrh" path="res://assets/hp/Heart_Full.png" id="1_du41s"]
+[ext_resource type="Texture2D" uid="uid://cjifjacmvexrh" path="res://assets/ui/hp/Heart_Full.png" id="1_du41s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ek8a"]
 radius = 7.0

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://fa7dfjt3t6no"]
+
+[ext_resource type="Texture2D" uid="uid://ch84uhojmy171" path="res://assets/ui/objects_decorate/vehicle/car_normal/car_upside/Car_2_Blue_Upsidedown.png" id="1_xvbbt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grfmm"]
+size = Vector2(30, 40)
+
+[node name="CarUpside" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xvbbt")
+region_enabled = true
+region_rect = Rect2(-0.90444183, -1.2067094, 28.966454, 39.162647)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_grfmm")

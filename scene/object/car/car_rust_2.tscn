@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu3x82suxv4ab"]
+
+[ext_resource type="Texture2D" uid="uid://bgo3oec8mwwuf" path="res://assets/ui/objects_decorate/vehicle/car_rust/car1/Car_4_Rust_Yellow.png" id="1_lryrt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grfmm"]
+size = Vector2(40, 20)
+
+[node name="CarRust" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lryrt")
+region_enabled = true
+region_rect = Rect2(-0.90444183, -0.74069405, 39.481323, 20.259306)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_grfmm")

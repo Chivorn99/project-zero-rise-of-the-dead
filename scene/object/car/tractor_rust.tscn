@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7s3r7tc0e11m"]
+
+[ext_resource type="Texture2D" uid="uid://lwgryxcse3ap" path="res://assets/ui/objects_decorate/vehicle/car_rust/car2/Car_5_Rust_Tractor_Side.png" id="1_dgxch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grfmm"]
+size = Vector2(42, 32)
+
+[node name="TractorRust" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dgxch")
+region_enabled = true
+region_rect = Rect2(-0.90444183, -0.74069405, 42.477688, 31.276659)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_grfmm")
