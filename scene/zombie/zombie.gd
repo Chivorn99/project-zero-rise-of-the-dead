@@ -112,4 +112,6 @@ func die():
 	is_dying = true
 	is_attacking = false
 	velocity = Vector2.ZERO
+	Global.normal_kills += 1
+	print("Normal Kills: ", Global.normal_kills)
 	anim.play("death_side")

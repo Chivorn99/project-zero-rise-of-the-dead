@@ -158,6 +158,8 @@ func die():
     if not has_revived:
         anim.play("first_death_side")
     else:
+        Global.big_kills += 1
+        print("Big Kills: ", Global.big_kills)
         anim.play("second_death_side")
 
 func _start_ground_wait():
