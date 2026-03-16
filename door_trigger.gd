@@ -1,19 +1,14 @@
 extends Area2D
 
-var player_at_door = false
+var req_normal = 15
+var req_big = 5
 var inside_level_path = "res://scene/level/production/helipad_final.tscn"
 
-func _process(delta):
-	if player_at_door and Input.is_key_pressed(KEY_E):
-		print("Teleporting inside...")
-		get_tree().change_scene_to_file(inside_level_path)
-
 func _on_body_entered(body):
-	print("Something touched the door: ", body.name) 
 	if body.name == "Player":
-		player_at_door = true
-
-func _on_body_exited(body):
-	print("Something left the door: ", body.name) 
-	if body.name == "Player":
-		player_at_door = false
+		if Global.normal_kills >= req_normal and Global.big_kills >= req_big:
+			print("Access Granted! Entering Helipad...")
+			get_tree().change_scene_to_file(inside_level_path)
+		else:
+			print("The door is locked tightly. I need to thin out the horde outside first!")
+			print("Progress: ", Global.normal_kills, "/", req_normal, " Normal | ", Global.big_kills, "/", req_big, " Big")

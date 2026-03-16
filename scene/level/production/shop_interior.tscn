@@ -17,12 +17,12 @@ tile_set = ExtResource("1_5q2md")
 [node name="Player" parent="." instance=ExtResource("2_ddopa")]
 position = Vector2(0, 138)
 
-[node name="ExitTrigger" type="Area2D" parent="."]
+[node name="ExitShop" type="Area2D" parent="."]
 script = ExtResource("3_04xjd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitTrigger"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitShop"]
 position = Vector2(0, 150)
 shape = SubResource("RectangleShape2D_s1kuu")
 
-[connection signal="body_entered" from="ExitTrigger" to="ExitTrigger" method="_on_body_entered"]
-[connection signal="body_exited" from="ExitTrigger" to="ExitTrigger" method="_on_body_exited"]
+[connection signal="body_entered" from="ExitShop" to="ExitShop" method="_on_body_entered"]
+[connection signal="body_exited" from="ExitShop" to="ExitShop" method="_on_body_exited"]
