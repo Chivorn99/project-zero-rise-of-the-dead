@@ -5,9 +5,9 @@ const SPEED = 120.0
 # SURVIVAL STATS
 var max_hp = 100
 var current_hp = 100
-
 var max_hunger = 100
 var current_hunger = 100
+
 var is_dead = false
 var spawn_position = Vector2.ZERO
 var is_attacking = false
@@ -42,15 +42,11 @@ func _ready():
 
 	health_bar.max_value = max_hp
 	health_bar.value = current_hp
-	
 	hunger_bar.max_value = max_hunger
 	hunger_bar.value = current_hunger
 
 func _physics_process(delta):
-	if is_dead:
-		return
-
-	if is_picking_up:
+	if is_dead or is_picking_up:
 		return
 
 	if attack_cooldown > 0:
@@ -60,12 +56,9 @@ func _physics_process(delta):
 		if not Input.is_action_pressed("attack"):
 			is_attacking = false
 			hitbox_shape.disabled = true
-			if last_direction.y < 0:
-				anim.play("idle_up")
-			elif last_direction.y > 0:
-				anim.play("idle_down")
-			else:
-				anim.play("idle_side")
+			if last_direction.y < 0: anim.play("idle_up")
+			elif last_direction.y > 0: anim.play("idle_down")
+			else: anim.play("idle_side")
 		return
 
 	var direction = Vector2.ZERO
@@ -78,68 +71,46 @@ func _physics_process(delta):
 		pickup()
 		return
 	
-	# INPUT — FIXED: added missing closing parentheses
-	if Input.is_action_pressed("ui_right") or Input.is_key_pressed(KEY_D):
-		direction.x += 1
-	if Input.is_action_pressed("ui_left") or Input.is_key_pressed(KEY_A):
-		direction.x -= 1
-	if Input.is_action_pressed("ui_down") or Input.is_key_pressed(KEY_S):
-		direction.y += 1
-	if Input.is_action_pressed("ui_up") or Input.is_key_pressed(KEY_W):
-		direction.y -= 1
+	if Input.is_action_pressed("ui_right") or Input.is_key_pressed(KEY_D): direction.x += 1
+	if Input.is_action_pressed("ui_left") or Input.is_key_pressed(KEY_A): direction.x -= 1
+	if Input.is_action_pressed("ui_down") or Input.is_key_pressed(KEY_S): direction.y += 1
+	if Input.is_action_pressed("ui_up") or Input.is_key_pressed(KEY_W): direction.y -= 1
 
 	if direction.length() > 0:
 		direction = direction.normalized()
 		velocity = direction * SPEED
 		last_direction = direction
 		
-		# RUN ANIMATIONS
-		if direction.y < 0:
-			anim.play("run_up")
-		elif direction.y > 0:
-			anim.play("run_down")
-		else:
-			anim.play("run_side")
+		if direction.y < 0: anim.play("run_up")
+		elif direction.y > 0: anim.play("run_down")
+		else: anim.play("run_side")
 			
-		if direction.x < 0:
-			anim.flip_h = true 
-		elif direction.x > 0:
-			anim.flip_h = false 
-			
+		anim.flip_h = direction.x < 0
 	else:
 		velocity = Vector2.ZERO
-		if last_direction.y < 0:
-			anim.play("idle_up")
-		elif last_direction.y > 0:
-			anim.play("idle_down")
-		else:
-			anim.play("idle_side")
+		if last_direction.y < 0: anim.play("idle_up")
+		elif last_direction.y > 0: anim.play("idle_down")
+		else: anim.play("idle_side")
 
 	move_and_slide()
 
 func take_damage(amount):
-	if is_dead:
-		return
-
+	if is_dead: return
 	current_hp -= amount
 	health_bar.value = current_hp
-	
-	print("Player took damage! HP is now: ", current_hp)
-	
-	if current_hp <= 0:
-		die()
+	if current_hp <= 0: die()
 
 func heal(amount):
-	if is_dead:
-		return 
-
+	if is_dead: return 
 	current_hp += amount
-	
-	if current_hp > max_hp:
-		current_hp = max_hp
-		
+	if current_hp > max_hp: current_hp = max_hp
 	health_bar.value = current_hp
-	print("Picked up Heart! HP is now: ", current_hp)
+
+func eat(amount):
+	if is_dead: return
+	current_hunger += amount
+	if current_hunger > max_hunger: current_hunger = max_hunger
+	hunger_bar.value = current_hunger
 
 func die():
 	is_dead = true
@@ -147,26 +118,17 @@ func die():
 	is_picking_up = false
 	hitbox_shape.disabled = true
 	velocity = Vector2.ZERO
-	
-	if last_direction.y < 0:
-		anim.play("death_one_side") 
-	elif last_direction.y > 0:
-		anim.play("death_one_side")
-	else:
-		anim.play("death_one_side")
-	
+	anim.play("death_one_side")
 	await get_tree().create_timer(3).timeout
 	respawn()
 
 func respawn():
 	global_position = spawn_position
 	velocity = Vector2.ZERO
-
 	current_hp = max_hp
 	current_hunger = max_hunger
 	health_bar.value = current_hp
 	hunger_bar.value = current_hunger
-
 	is_dead = false
 	is_attacking = false
 	is_picking_up = false
@@ -179,7 +141,6 @@ func respawn():
 func attack():
 	is_attacking = true
 	velocity = Vector2.ZERO 
-
 	hitbox_shape.disabled = false
 	
 	if last_direction.y < 0:
@@ -190,21 +151,14 @@ func attack():
 		hitbox.position = Vector2(0, 15) 
 	else:
 		anim.play("attack_side")
-		if anim.flip_h:
-			hitbox.position = Vector2(-15, 0) 
-		else:
-			hitbox.position = Vector2(15, 0)
+		hitbox.position = Vector2(-15 if anim.flip_h else 15, 0)
 
 func pickup():
 	is_picking_up = true
 	velocity = Vector2.ZERO
-	
-	if last_direction.y < 0:
-		anim.play("pickup_up")
-	elif last_direction.y > 0:
-		anim.play("pickup_down")
-	else:
-		anim.play("pickup_side")
+	if last_direction.y < 0: anim.play("pickup_up")
+	elif last_direction.y > 0: anim.play("pickup_down")
+	else: anim.play("pickup_side")
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation.begins_with("attack"):

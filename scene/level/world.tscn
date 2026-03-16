@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://bwja2cdealkcw"]
+[gd_scene load_steps=6 format=4 uid="uid://bwja2cdealkcw"]
 
 [ext_resource type="TileSet" uid="uid://d1pns4jj81iqa" path="res://assets/tilesets/waste_land_tile.tres" id="1_0hn3o"]
 [ext_resource type="PackedScene" uid="uid://bdm8702e2w72g" path="res://scene/player/player.tscn" id="2_er4cb"]
 [ext_resource type="PackedScene" uid="uid://plsodaf7as2a" path="res://scene/zombie/zombie.tscn" id="4_er4cb"]
 [ext_resource type="PackedScene" uid="uid://bu1nyt1l6ktiy" path="res://scene/items/heart_item.tscn" id="5_cud0k"]
+[ext_resource type="PackedScene" uid="uid://cn66b0i6igcpc" path="res://scene/items/bandage.tscn" id="5_gk4mf"]
 
 [node name="World" type="Node2D"]
 
@@ -33,3 +34,9 @@ position = Vector2(-112, -47)
 
 [node name="HeartItem4" parent="." groups=["heal"] instance=ExtResource("5_cud0k")]
 position = Vector2(32, -50)
+
+[node name="Bandage" parent="." instance=ExtResource("5_gk4mf")]
+position = Vector2(-14, 107)
+
+[node name="Bandage2" parent="." instance=ExtResource("5_gk4mf")]
+position = Vector2(-49, 74)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://mphqth5bfn0x"]
+[gd_scene load_steps=20 format=4 uid="uid://mphqth5bfn0x"]
 
 [ext_resource type="TileSet" uid="uid://d1pns4jj81iqa" path="res://assets/tilesets/waste_land_tile.tres" id="1_c3cmm"]
 [ext_resource type="TileSet" uid="uid://yni8a1hyi7ik" path="res://assets/tilesets/dark_green_tileset.tres" id="2_ekndc"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cu3x82suxv4ab" path="res://scene/object/car/car_rust_2.tscn" id="16_iu6m4"]
 [ext_resource type="PackedScene" uid="uid://b7s3r7tc0e11m" path="res://scene/object/car/tractor_rust.tscn" id="17_xshff"]
 [ext_resource type="PackedScene" uid="uid://fa7dfjt3t6no" path="res://scene/object/car/car_upside.tscn" id="18_hdpqh"]
+[ext_resource type="PackedScene" uid="uid://dobxfwr4r7p6i" path="res://scene/items/pickup_gun.tscn" id="19_iu6m4"]
 
 [node name="OutsideWorld" type="Node2D"]
 y_sort_enabled = true
@@ -168,3 +169,6 @@ position = Vector2(-200, -106)
 
 [node name="CarRust17" parent="." instance=ExtResource("16_iu6m4")]
 position = Vector2(-90, -213)
+
+[node name="PickupGun" parent="." instance=ExtResource("19_iu6m4")]
+position = Vector2(-230, 217)

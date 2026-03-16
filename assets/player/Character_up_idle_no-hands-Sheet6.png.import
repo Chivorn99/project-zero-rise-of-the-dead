@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5u4ybgkpgv0c"
-path="res://.godot/imported/HP.png-858e95ba267794f5dd0d2572295f6b1f.ctex"
+uid="uid://bld5s7kyf02xk"
+path="res://.godot/imported/Character_up_idle_no-hands-Sheet6.png-cd2c86c970d2be14bfa5f21746cfaee0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/hp/HP.png"
-dest_files=["res://.godot/imported/HP.png-858e95ba267794f5dd0d2572295f6b1f.ctex"]
+source_file="res://assets/player/Character_up_idle_no-hands-Sheet6.png"
+dest_files=["res://.godot/imported/Character_up_idle_no-hands-Sheet6.png-cd2c86c970d2be14bfa5f21746cfaee0.ctex"]
 
 [params]
 

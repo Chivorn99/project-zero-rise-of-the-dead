@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5u4ybgkpgv0c"
-path="res://.godot/imported/HP.png-858e95ba267794f5dd0d2572295f6b1f.ctex"
+uid="uid://fegx5udkl27v"
+path="res://.godot/imported/Bandage.png-e158ecb87f0a1a6dacdcca98266a4f23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/hp/HP.png"
-dest_files=["res://.godot/imported/HP.png-858e95ba267794f5dd0d2572295f6b1f.ctex"]
+source_file="res://assets/ui/hp/Bandage.png"
+dest_files=["res://.godot/imported/Bandage.png-e158ecb87f0a1a6dacdcca98266a4f23.ctex"]
 
 [params]
 

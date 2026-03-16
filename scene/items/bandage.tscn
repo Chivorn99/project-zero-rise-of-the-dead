@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn66b0i6igcpc"]
+
+[ext_resource type="Script" uid="uid://bvhw8rsu8pg15" path="res://scene/items/bandage.gd" id="1_slm5w"]
+[ext_resource type="Texture2D" uid="uid://fegx5udkl27v" path="res://assets/ui/hp/Bandage.png" id="2_5bgia"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18jf4"]
+size = Vector2(6, 8)
+
+[node name="Bandage" type="Area2D"]
+script = ExtResource("1_slm5w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_18jf4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5bgia")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
