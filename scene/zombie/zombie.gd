@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 20.0
 const ATTACK_RANGE = 17.5 
+const DETECTION_RANGE = 140.0
 
 @onready var anim = $AnimatedSprite2D
 
@@ -36,6 +37,19 @@ func _physics_process(delta):
 
 	var distance = global_position.distance_to(player.global_position)
 	var direction = global_position.direction_to(player.global_position)
+
+	# Only detect/chase player inside this radius.
+	if distance > DETECTION_RANGE:
+		velocity = Vector2.ZERO
+		if abs(direction.x) > abs(direction.y):
+			anim.play("idle_side")
+			anim.flip_h = direction.x < 0
+		else:
+			if direction.y < 0:
+				anim.play("idle_up")
+			else:
+				anim.play("idle_down")
+		return
 
 	if distance < ATTACK_RANGE and attack_cooldown <= 0:
 		attack(direction)

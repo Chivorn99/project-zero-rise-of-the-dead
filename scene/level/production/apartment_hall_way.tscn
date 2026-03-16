@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://bcwekq62w8tqv"]
+[gd_scene load_steps=6 format=4 uid="uid://bcwekq62w8tqv"]
 
 [ext_resource type="TileSet" uid="uid://bcvgnokqv2b7n" path="res://assets/tilesets/apartment_room.tres" id="1_c0u11"]
 [ext_resource type="Script" uid="uid://bst5u4rpd63ta" path="res://scene/level/production/exiting_hallway.gd" id="2_4m7ep"]
 [ext_resource type="PackedScene" uid="uid://bdm8702e2w72g" path="res://scene/player/player.tscn" id="2_mgqai"]
+[ext_resource type="PackedScene" uid="uid://plsodaf7as2a" path="res://scene/zombie/zombie.tscn" id="4_3da64"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0u11"]
 size = Vector2(30, 10)
@@ -32,6 +33,18 @@ shape = SubResource("RectangleShape2D_c0u11")
 
 [node name="Player" parent="EnteringHall" instance=ExtResource("2_mgqai")]
 position = Vector2(-16, -8)
+
+[node name="Zombie" parent="." instance=ExtResource("4_3da64")]
+position = Vector2(-22, 98)
+
+[node name="Zombie2" parent="." instance=ExtResource("4_3da64")]
+position = Vector2(22, 140)
+
+[node name="Zombie3" parent="." instance=ExtResource("4_3da64")]
+position = Vector2(150, 12)
+
+[node name="Zombie4" parent="." instance=ExtResource("4_3da64")]
+position = Vector2(44, 85)
 
 [connection signal="body_entered" from="ExitingHallway" to="ExitingHallway" method="_on_body_entered"]
 [connection signal="body_exited" from="ExitingHallway" to="ExitingHallway" method="_on_body_exited"]
