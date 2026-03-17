@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://mphqth5bfn0x"]
+[gd_scene load_steps=21 format=4 uid="uid://mphqth5bfn0x"]
 
 [ext_resource type="TileSet" uid="uid://d1pns4jj81iqa" path="res://assets/tilesets/waste_land_tile.tres" id="1_c3cmm"]
 [ext_resource type="Script" uid="uid://dlrujsu8i1wjo" path="res://scene/level/production/outside_world.gd" id="1_xshff"]
@@ -19,10 +19,16 @@
 [ext_resource type="PackedScene" uid="uid://cu3x82suxv4ab" path="res://scene/object/car/car_rust_2.tscn" id="16_iu6m4"]
 [ext_resource type="PackedScene" uid="uid://b7s3r7tc0e11m" path="res://scene/object/car/tractor_rust.tscn" id="17_xshff"]
 [ext_resource type="PackedScene" uid="uid://fa7dfjt3t6no" path="res://scene/object/car/car_upside.tscn" id="18_hdpqh"]
+[ext_resource type="AudioStream" path="res://assets/song/tim_kulig_free_music-the-fog-of-war-150738.mp3" id="19_bgm"]
 
 [node name="OutsideWorld" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_xshff")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_bgm")
+autoplay = true
+volume_db = -8.0
 
 [node name="WasteLand" type="TileMapLayer" parent="."]
 z_index = -1

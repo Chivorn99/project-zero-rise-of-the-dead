@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://b4agxwow0qgqx"]
+[gd_scene load_steps=9 format=4 uid="uid://b4agxwow0qgqx"]
 
 [ext_resource type="TileSet" uid="uid://bgkurryky50sq" path="res://assets/tilesets/shop_interior_tile.tres" id="1_5q2md"]
 [ext_resource type="PackedScene" uid="uid://bdm8702e2w72g" path="res://scene/player/player.tscn" id="2_ddopa"]
@@ -6,11 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://cn66b0i6igcpc" path="res://scene/items/bandage.tscn" id="4_sv22f"]
 [ext_resource type="PackedScene" uid="uid://cjdx6la1efymk" path="res://scene/zombie/big_zombie.tscn" id="5_1wdwk"]
 [ext_resource type="PackedScene" uid="uid://plsodaf7as2a" path="res://scene/zombie/zombie.tscn" id="6_88fak"]
+[ext_resource type="AudioStream" path="res://assets/song/tim_kulig_free_music-the-fog-of-war-150738.mp3" id="7_bgm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1kuu"]
 size = Vector2(20, 7)
 
 [node name="ShopInterior" type="Node2D"]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_bgm")
+autoplay = true
+volume_db = -8.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(0.333, 0.333)
