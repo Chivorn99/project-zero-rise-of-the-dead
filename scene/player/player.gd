@@ -24,13 +24,10 @@ const ATTACK_COOLDOWN_TIME = 0.4
 var last_direction = Vector2.DOWN
 
 func _ready():
-	# NEW: Check if we have a special spawn point from a door!
 	if Global.player_spawn_pos != Vector2.ZERO:
 		global_position = Global.player_spawn_pos
 		Global.player_spawn_pos = Vector2.ZERO
 	
-	# Set the respawn point here so if he dies outside the shop,
-	# he respawns at the shop instead of all the way back home!
 	spawn_position = global_position
 
 	if anim.sprite_frames:

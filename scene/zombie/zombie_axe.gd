@@ -13,7 +13,6 @@ const ATTACK_COOLDOWN_TIME = 0.8
 var health = 250
 var is_dying = false
 
-# Revival system
 var has_revived = false
 var is_reviving = false
 var revive_reverse_frame = -1
@@ -23,7 +22,6 @@ var ground_timer = 0.0
 var waiting_on_ground = false
 var phase_one_defeat_emitted = false
 
-# Added the TALKING state!
 enum State {WAITING, TALKING, IDLE, CHASE, ATTACK}
 var current_state = State.WAITING
 var is_attacking = false
@@ -43,22 +41,19 @@ func _ready():
 			anim.sprite_frames.set_animation_loop("first_death_side", false)
 		if anim.sprite_frames.has_animation("second_death_side"):
 			anim.sprite_frames.set_animation_loop("second_death_side", false)
-		# Set attack animations to not loop
 		for anim_name in ["first_attack_side", "first_attack_up", "first_attack_down", 
 						   "second_attack_side", "second_attack_up", "second_attack_down"]:
 			if anim.sprite_frames.has_animation(anim_name):
 				anim.sprite_frames.set_animation_loop(anim_name, false)
 	anim.animation_finished.connect(_on_animated_sprite_2d_animation_finished)
-	dialogue_ui.hide() # Ensure the UI is hidden when the scene loads
+	dialogue_ui.hide() 
 
 func _process(delta):
-	# 1. Trigger the conversation
 	if current_state == State.WAITING and player_in_talk_zone and Input.is_key_pressed(KEY_E):
 		dialogue_label.text = "You made it to the helipad, Varaman... but you're too late! RAAAARRGGHH!"
 		dialogue_ui.show()
 		current_state = State.TALKING
 		
-	# 2. Read the text, press Enter, and start the fight!
 	elif current_state == State.TALKING and Input.is_key_pressed(KEY_ENTER):
 		dialogue_ui.hide()
 		current_state = State.CHASE
@@ -66,7 +61,6 @@ func _process(delta):
 		emit_signal("intro_finished")
 
 func _physics_process(delta):
-	# Ground waiting before revival
 	if waiting_on_ground:
 		ground_timer -= delta
 		if ground_timer <= 0:
@@ -74,7 +68,6 @@ func _physics_process(delta):
 			_start_reverse_playback()
 		return
 
-	# REVIVAL animation (reverse playback)
 	if is_reviving and revive_reverse_frame >= 0:
 		revive_frame_timer -= delta
 		if revive_frame_timer <= 0:
@@ -94,11 +87,9 @@ func _physics_process(delta):
 
 	var distance_to_player = global_position.distance_to(player.global_position)
 
-	# Don't change state while attacking
 	if is_attacking:
 		return
 
-	# Only check for chasing/attacking if he isn't waiting or talking
 	if current_state != State.WAITING and current_state != State.TALKING:
 		if distance_to_player <= attack_radius and attack_cooldown <= 0:
 			current_state = State.ATTACK
@@ -107,7 +98,6 @@ func _physics_process(delta):
 		else:
 			current_state = State.IDLE
 
-	# Execute the action based on the state
 	match current_state:
 		State.WAITING, State.TALKING, State.IDLE:
 			velocity = Vector2.ZERO
@@ -122,7 +112,6 @@ func _physics_process(delta):
 		State.ATTACK:
 			velocity = Vector2.ZERO
 			is_attacking = true
-			# After revival, use second_attack more often (70% chance)
 			var attack_type = "first_attack"
 			if has_revived:
 				attack_type = "second_attack" if randf() < 0.7 else "first_attack"
@@ -149,10 +138,8 @@ func play_directional_animation(action: String):
 func perform_attack():
 	attack_cooldown = ATTACK_COOLDOWN_TIME
 	
-	# Wait for damage timing
 	await get_tree().create_timer(0.3).timeout
-	
-	# Deal damage if still valid
+
 	if player != null and not is_dying and not is_reviving:
 		var dist = global_position.distance_to(player.global_position)
 		if dist < attack_radius * 1.5 and player.has_method("take_damage"):

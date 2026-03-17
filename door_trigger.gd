@@ -6,7 +6,6 @@ var inside_level_path = "res://scene/level/production/helipad_final.tscn"
 
 var player_at_door = false
 
-# Make sure you added a Label as a child to the DoorTrigger node!
 @onready var prompt = $Label
 
 func _ready():

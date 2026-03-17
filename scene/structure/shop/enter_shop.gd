@@ -12,10 +12,8 @@ func _process(_delta):
 	var e_is_down = Input.is_key_pressed(KEY_E)
 	if player_at_door and e_is_down and not e_was_down:
 		if player_ref != null:
-			# Save exact world position so exit can return player here.
 			Global.shop_return_pos = player_ref.global_position
 
-		# Use default player position in interior scene.
 		Global.player_spawn_pos = Vector2.ZERO
 		print("Teleporting inside...")
 		get_tree().change_scene_to_file(inside_level_path)
