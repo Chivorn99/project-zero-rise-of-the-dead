@@ -23,6 +23,40 @@ const ATTACK_COOLDOWN_TIME = 0.4
 
 var last_direction = Vector2.DOWN
 
+var anim_aliases = {
+	"run_side": ["gun_walk_side", "walk_side"],
+	"run_up": ["gun_walk_up", "walk_up"],
+	"run_down": ["gun_walk_down", "walk_down"],
+	"idle_side": ["idle_side_left"],
+	"attack_side": ["gun_shoot_side"],
+	"attack_up": ["gun_shoot_up"]
+}
+
+func _resolve_anim_name(anim_name: String) -> String:
+	if anim == null or anim.sprite_frames == null:
+		return ""
+
+	if anim.sprite_frames.has_animation(anim_name):
+		return anim_name
+
+	if anim_aliases.has(anim_name):
+		for alias_name in anim_aliases[anim_name]:
+			if anim.sprite_frames.has_animation(alias_name):
+				return alias_name
+
+	return ""
+
+func play_anim_safe(anim_name: String, fallback_name: String = "idle_down"):
+	var resolved_name = _resolve_anim_name(anim_name)
+	if resolved_name != "":
+		anim.play(resolved_name)
+		return
+
+	push_warning("Missing animation: %s" % anim_name)
+	var fallback_resolved = _resolve_anim_name(fallback_name)
+	if fallback_resolved != "":
+		anim.play(fallback_resolved)
+
 func _ready():
 	if Global.player_spawn_pos != Vector2.ZERO:
 		global_position = Global.player_spawn_pos
@@ -31,6 +65,8 @@ func _ready():
 	spawn_position = global_position
 
 	if anim.sprite_frames:
+		print("Player animations loaded: ", anim.sprite_frames.get_animation_names())
+		print("Current sprite_frames resource: ", anim.sprite_frames.resource_path)
 		if anim.sprite_frames.has_animation("attack_up"):
 			anim.sprite_frames.set_animation_loop("attack_up", false)
 		if anim.sprite_frames.has_animation("attack_down"):
@@ -60,9 +96,9 @@ func _physics_process(delta):
 		if not Input.is_action_pressed("attack"):
 			is_attacking = false
 			hitbox_shape.disabled = true
-			if last_direction.y < 0: anim.play("idle_up")
-			elif last_direction.y > 0: anim.play("idle_down")
-			else: anim.play("idle_side")
+			if last_direction.y < 0: play_anim_safe("idle_up")
+			elif last_direction.y > 0: play_anim_safe("idle_down")
+			else: play_anim_safe("idle_side")
 		return
 
 	var direction = Vector2.ZERO
@@ -85,16 +121,16 @@ func _physics_process(delta):
 		velocity = direction * SPEED
 		last_direction = direction
 		
-		if direction.y < 0: anim.play("run_up")
-		elif direction.y > 0: anim.play("run_down")
-		else: anim.play("run_side")
+		if direction.y < 0: play_anim_safe("run_up")
+		elif direction.y > 0: play_anim_safe("run_down")
+		else: play_anim_safe("run_side")
 			
 		anim.flip_h = direction.x < 0
 	else:
 		velocity = Vector2.ZERO
-		if last_direction.y < 0: anim.play("idle_up")
-		elif last_direction.y > 0: anim.play("idle_down")
-		else: anim.play("idle_side")
+		if last_direction.y < 0: play_anim_safe("idle_up")
+		elif last_direction.y > 0: play_anim_safe("idle_down")
+		else: play_anim_safe("idle_side")
 
 	move_and_slide()
 
@@ -122,7 +158,7 @@ func die():
 	is_picking_up = false
 	hitbox_shape.disabled = true
 	velocity = Vector2.ZERO
-	anim.play("death_one_side")
+	play_anim_safe("death_one_side", "idle_down")
 	await get_tree().create_timer(3).timeout
 	respawn()
 
@@ -140,7 +176,7 @@ func respawn():
 	hitbox_shape.disabled = true
 	last_direction = Vector2.DOWN
 	anim.flip_h = false
-	anim.play("idle_down")
+	play_anim_safe("idle_down")
 
 func attack():
 	is_attacking = true
@@ -148,21 +184,21 @@ func attack():
 	hitbox_shape.disabled = false
 	
 	if last_direction.y < 0:
-		anim.play("attack_up")
+		play_anim_safe("attack_up", "idle_up")
 		hitbox.position = Vector2(0, -15) 
 	elif last_direction.y > 0:
-		anim.play("attack_down")
+		play_anim_safe("attack_down", "idle_down")
 		hitbox.position = Vector2(0, 15) 
 	else:
-		anim.play("attack_side")
+		play_anim_safe("attack_side", "idle_side")
 		hitbox.position = Vector2(-15 if anim.flip_h else 15, 0)
 
 func pickup():
 	is_picking_up = true
 	velocity = Vector2.ZERO
-	if last_direction.y < 0: anim.play("pickup_up")
-	elif last_direction.y > 0: anim.play("pickup_down")
-	else: anim.play("pickup_side")
+	if last_direction.y < 0: play_anim_safe("pickup_up", "idle_up")
+	elif last_direction.y > 0: play_anim_safe("pickup_down", "idle_down")
+	else: play_anim_safe("pickup_side", "idle_side")
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation.begins_with("attack"):

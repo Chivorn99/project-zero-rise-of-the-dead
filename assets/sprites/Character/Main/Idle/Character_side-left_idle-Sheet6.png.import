@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://182s630s1epy"
-path="res://.godot/imported/Character_side_idle_no-hands-Sheet6.png-dd4a28af5107322b147e922531966c32.ctex"
+uid="uid://cp3dlvv25bs5c"
+path="res://.godot/imported/Character_side-left_idle-Sheet6.png-af996af6235fd733cfbc7473663ac8ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/Character_side_idle_no-hands-Sheet6.png"
-dest_files=["res://.godot/imported/Character_side_idle_no-hands-Sheet6.png-dd4a28af5107322b147e922531966c32.ctex"]
+source_file="res://assets/sprites/Character/Main/Idle/Character_side-left_idle-Sheet6.png"
+dest_files=["res://.godot/imported/Character_side-left_idle-Sheet6.png-af996af6235fd733cfbc7473663ac8ce.ctex"]
 
 [params]
 

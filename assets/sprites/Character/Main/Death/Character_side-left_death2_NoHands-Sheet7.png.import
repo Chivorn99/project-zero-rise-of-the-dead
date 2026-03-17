@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhksr5iabfrlk"
-path="res://.godot/imported/Character_down_idle_no-hands-Sheet6.png-4f983fbc8f94ffbdee924d11e7d770c4.ctex"
+uid="uid://dfaqh2jc4drim"
+path="res://.godot/imported/Character_side-left_death2_NoHands-Sheet7.png-a9dca058762b363b3ad6e270e2ec3d05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/Character_down_idle_no-hands-Sheet6.png"
-dest_files=["res://.godot/imported/Character_down_idle_no-hands-Sheet6.png-4f983fbc8f94ffbdee924d11e7d770c4.ctex"]
+source_file="res://assets/sprites/Character/Main/Death/Character_side-left_death2_NoHands-Sheet7.png"
+dest_files=["res://.godot/imported/Character_side-left_death2_NoHands-Sheet7.png-a9dca058762b363b3ad6e270e2ec3d05.ctex"]
 
 [params]
 

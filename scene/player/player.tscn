@@ -23,7 +23,7 @@ script = ExtResource("1_dk1vr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = ExtResource("2_732fb")
-animation = &"gun_dead_side"
+animation = &"run_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
