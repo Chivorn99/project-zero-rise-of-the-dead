@@ -24,7 +24,7 @@ A top-down 2D pixel art post-apocalyptic survival game built in Godot 4.5.1.
 * **Level Transition Fix:** Resolved a critical beta-testing bug where exiting the interior shop scene incorrectly spawned the player at the original apartment start point. Engineered a Global coordinate tracker to seamlessly warp the player to the exact exterior storefront entrance.
 
 ## 📺 Final Gameplay Demo
-**[CLICK HERE TO WATCH THE FINAL GAMEPLAY & BOSS FIGHT VIDEO]((https://youtu.be/H7iFcaxUiCQ))**
+**[CLICK HERE TO WATCH THE FINAL GAMEPLAY & BOSS FIGHT VIDEO][((https://youtu.be/H7iFcaxUiCQ))](https://youtu.be/H7iFcaxUiCQ)**
 
 ## 📸 Screenshots
 *(Drag and drop your gameplay screenshots here on GitHub, or link them)*
