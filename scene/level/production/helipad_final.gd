@@ -21,24 +21,21 @@ func _ready():
 	remaining_label = Label.new()
 	remaining_label.add_theme_font_size_override("font_size", 20)
 	remaining_label.add_theme_color_override("font_color", Color(1, 0.92, 0.5))
-	remaining_label.position = Vector2(20, 20)
+	remaining_label.position = Vector2(20, 150)
 	remaining_label.text = "Enemies Remaining: 0"
 	hud_layer.add_child(remaining_label)
 
-	# 1. CREATE THE FLOATING POPUP TEXT IN CODE
 	var warning = Label.new()
 	warning.text = "KILL THE FINAL ZOMBIE!"
 	warning.add_theme_font_size_override("font_size", 24)
 	warning.add_theme_color_override("font_color", Color.RED)
-	warning.position = Vector2(-120, -100) # Floats near the top
+	warning.position = Vector2(-120, -100) 
 	add_child(warning)
 	
-	# Delete the text after 4 seconds
 	get_tree().create_timer(4.0).timeout.connect(func(): warning.queue_free())
 
-	# 2. PREP THE BACKUP WAVE SPAWNER (starts after boss intro ends)
 	spawn_timer = Timer.new()
-	spawn_timer.wait_time = 5.0 # Spawns backup every 5 seconds!
+	spawn_timer.wait_time = 5.0
 	spawn_timer.autostart = false
 	spawn_timer.timeout.connect(_on_spawn_wave)
 	add_child(spawn_timer)
@@ -55,14 +52,12 @@ func _on_spawn_wave():
 	if phase_2_defeated:
 		return
 
-	# Spawns normal zombies in Phase 1, and Big Zombies in Phase 2!
 	var minion
 	if boss_phase_2:
 		minion = big_zombie_scene.instantiate()
 	else:
 		minion = zombie_scene.instantiate()
 	
-	# Spawn randomly around the edges of the helipad
 	minion.global_position = Vector2(randf_range(-150, 150), randf_range(-150, 150))
 	minion.add_to_group("helipad_minions")
 	add_child(minion)
@@ -77,11 +72,10 @@ func _on_phase_1_defeated():
 	print("Phase 1 Boss Defeated! Spawning Phase 2...")
 	boss_phase_2 = true
 	
-	# Spawn the Big Zombie Boss!
 	phase_2_boss = big_zombie_scene.instantiate()
-	phase_2_boss.global_position = Vector2(0, 0) # Center of helipad
-	phase_2_boss.modulate = Color.RED # Tint him red so he looks dangerous
-	phase_2_boss.scale = Vector2(1.5, 1.5) # Make him 50% larger!
+	phase_2_boss.global_position = Vector2(0, 0)
+	phase_2_boss.modulate = Color.RED 
+	phase_2_boss.scale = Vector2(1.5, 1.5) 
 	add_child(phase_2_boss)
 
 func _update_remaining_ui():
