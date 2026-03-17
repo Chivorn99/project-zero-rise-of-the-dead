@@ -35,16 +35,16 @@ shape = SubResource("RectangleShape2D_c0u11")
 position = Vector2(-16, -8)
 
 [node name="Zombie" parent="." instance=ExtResource("4_3da64")]
-position = Vector2(-22, 98)
+position = Vector2(-16, 106)
 
 [node name="Zombie2" parent="." instance=ExtResource("4_3da64")]
-position = Vector2(22, 140)
+position = Vector2(16, 161)
 
 [node name="Zombie3" parent="." instance=ExtResource("4_3da64")]
-position = Vector2(150, 12)
+position = Vector2(144, 16)
 
 [node name="Zombie4" parent="." instance=ExtResource("4_3da64")]
-position = Vector2(44, 85)
+position = Vector2(51, 77)
 
 [connection signal="body_entered" from="ExitingHallway" to="ExitingHallway" method="_on_body_entered"]
 [connection signal="body_exited" from="ExitingHallway" to="ExitingHallway" method="_on_body_exited"]

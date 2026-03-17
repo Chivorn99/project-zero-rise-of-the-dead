@@ -28,6 +28,14 @@ script = ExtResource("2_bq26i")
 position = Vector2(127, 8)
 shape = SubResource("RectangleShape2D_v6qmm")
 
+[node name="Label" type="Label" parent="ExitToHallway"]
+offset_left = 62.0
+offset_top = -17.0
+offset_right = 145.0
+offset_bottom = -3.0
+theme_override_font_sizes/font_size = 8
+text = "Press [E] to enter"
+
 [node name="Toilet" parent="." instance=ExtResource("4_qsnii")]
 position = Vector2(-152, 69)
 scale = Vector2(0.666, 0.666)

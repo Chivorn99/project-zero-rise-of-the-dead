@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=4 uid="uid://b4agxwow0qgqx"]
+[gd_scene load_steps=8 format=4 uid="uid://b4agxwow0qgqx"]
 
 [ext_resource type="TileSet" uid="uid://bgkurryky50sq" path="res://assets/tilesets/shop_interior_tile.tres" id="1_5q2md"]
 [ext_resource type="PackedScene" uid="uid://bdm8702e2w72g" path="res://scene/player/player.tscn" id="2_ddopa"]
 [ext_resource type="Script" uid="uid://667vbdfmlynw" path="res://scene/level/exit_trigger.gd" id="3_04xjd"]
+[ext_resource type="PackedScene" uid="uid://cn66b0i6igcpc" path="res://scene/items/bandage.tscn" id="4_sv22f"]
+[ext_resource type="PackedScene" uid="uid://cjdx6la1efymk" path="res://scene/zombie/big_zombie.tscn" id="5_1wdwk"]
+[ext_resource type="PackedScene" uid="uid://plsodaf7as2a" path="res://scene/zombie/zombie.tscn" id="6_88fak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1kuu"]
 size = Vector2(20, 7)
@@ -23,6 +26,99 @@ script = ExtResource("3_04xjd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitShop"]
 position = Vector2(0, 150)
 shape = SubResource("RectangleShape2D_s1kuu")
+
+[node name="Bandage" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-32, -2)
+
+[node name="Bandage2" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-100, -17)
+
+[node name="Bandage3" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-99, 33)
+
+[node name="Bandage4" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-112, 45)
+
+[node name="Bandage5" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-93, 54)
+
+[node name="Bandage6" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-82, -22)
+
+[node name="Bandage7" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-112, -28)
+
+[node name="Bandage8" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-50, -25)
+
+[node name="Bandage9" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-11, -20)
+
+[node name="Bandage10" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(94, -29)
+
+[node name="Bandage11" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(117, -14)
+
+[node name="Bandage12" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(103, -14)
+
+[node name="Bandage13" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(98, 3)
+
+[node name="Bandage14" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(71, -17)
+
+[node name="Bandage15" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(36, -18)
+
+[node name="Bandage16" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(5, -3)
+
+[node name="Bandage17" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(99, 61)
+
+[node name="Bandage18" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(120, 66)
+
+[node name="Bandage19" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(77, 67)
+
+[node name="Bandage20" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(103, 73)
+
+[node name="Bandage21" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-117, 113)
+
+[node name="Bandage22" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-97, 112)
+
+[node name="Bandage23" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-105, 92)
+
+[node name="Bandage24" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-66, 118)
+
+[node name="Bandage25" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-28, 57)
+
+[node name="Bandage26" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(-60, 28)
+
+[node name="Bandage27" parent="." instance=ExtResource("4_sv22f")]
+position = Vector2(5, 30)
+
+[node name="Big_Zombie" parent="." instance=ExtResource("5_1wdwk")]
+position = Vector2(19, -25)
+
+[node name="Zombie" parent="." instance=ExtResource("6_88fak")]
+position = Vector2(-100, 46)
+
+[node name="Zombie2" parent="." instance=ExtResource("6_88fak")]
+position = Vector2(90, 70)
+
+[node name="Zombie3" parent="." instance=ExtResource("6_88fak")]
+position = Vector2(105, 120)
 
 [connection signal="body_entered" from="ExitShop" to="ExitShop" method="_on_body_entered"]
 [connection signal="body_exited" from="ExitShop" to="ExitShop" method="_on_body_exited"]

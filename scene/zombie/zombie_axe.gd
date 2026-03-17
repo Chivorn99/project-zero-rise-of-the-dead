@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+signal intro_finished
+signal phase_one_defeated
+
 # --- Boss Stats ---
 var speed = 45.0
 var detection_radius = 150.0
@@ -18,6 +21,7 @@ var revive_frame_timer = 0.0
 var revive_frame_delay = 0.0
 var ground_timer = 0.0
 var waiting_on_ground = false
+var phase_one_defeat_emitted = false
 
 # Added the TALKING state!
 enum State {WAITING, TALKING, IDLE, CHASE, ATTACK}
@@ -59,6 +63,7 @@ func _process(delta):
 		dialogue_ui.hide()
 		current_state = State.CHASE
 		$TalkRadius.set_deferred("monitoring", false)
+		emit_signal("intro_finished")
 
 func _physics_process(delta):
 	# Ground waiting before revival
@@ -177,6 +182,9 @@ func _start_ground_wait():
 	is_reviving = true
 	waiting_on_ground = true
 	ground_timer = 2.0
+	if not phase_one_defeat_emitted:
+		phase_one_defeat_emitted = true
+		emit_signal("phase_one_defeated")
 	print("Zombie Axe collapsed... lying on the ground")
 
 	var last_frame = anim.sprite_frames.get_frame_count("first_death_side") - 1

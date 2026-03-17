@@ -56,5 +56,11 @@ script = ExtResource("2_k43da")
 position = Vector2(0, 41.75)
 shape = SubResource("RectangleShape2D_6e021")
 
+[node name="Label" type="Label" parent="DoorTrigger"]
+offset_left = -75.0
+offset_top = 45.0
+offset_right = -35.0
+offset_bottom = 68.0
+
 [connection signal="body_entered" from="DoorTrigger" to="DoorTrigger" method="_on_body_entered"]
 [connection signal="body_exited" from="DoorTrigger" to="DoorTrigger" method="_on_body_exited"]

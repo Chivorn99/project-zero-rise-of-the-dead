@@ -11,11 +11,39 @@ var big_spawn_interval = 14.0
 var max_total_zombies = 10  # Cap Spawning
 var big_spawn_unlock_time = 60.0 
 var big_spawn_chance = 0.35    
+var req_normal_kills = 15
+var req_big_kills = 5
 
 var elapsed_time = 0.0
+var mission_label = null
+
+func _create_mission_ui():
+	var hud_layer = CanvasLayer.new()
+	add_child(hud_layer)
+
+	mission_label = Label.new()
+	mission_label.add_theme_font_size_override("font_size", 20)
+	mission_label.add_theme_color_override("font_color", Color(1, 0.95, 0.7))
+	mission_label.position = Vector2(20, 90)
+	hud_layer.add_child(mission_label)
+
+	_update_mission_ui()
+
+func _update_mission_ui():
+	if mission_label == null:
+		return
+
+	var normal_text = "Normal Kills: %d/%d" % [Global.normal_kills, req_normal_kills]
+	var big_text = "Big Kills: %d/%d" % [Global.big_kills, req_big_kills]
+
+	if Global.normal_kills >= req_normal_kills and Global.big_kills >= req_big_kills:
+		mission_label.text = "Helipad Unlocked!\n%s\n%s" % [normal_text, big_text]
+	else:
+		mission_label.text = "Helipad Mission\n%s\n%s" % [normal_text, big_text]
 
 func _ready():
 	randomize()
+	_create_mission_ui()
 
 	var spawn_timer = Timer.new()
 	spawn_timer.wait_time = spawn_interval
@@ -31,6 +59,7 @@ func _ready():
 
 func _process(delta):
 	elapsed_time += delta
+	_update_mission_ui()
 
 func _on_spawn_timer_timeout():
 	var total_zombies = get_tree().get_nodes_in_group("zombies").size()
